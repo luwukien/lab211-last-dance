@@ -7,12 +7,12 @@ package model;
 public class EastAsiaCountries {
     protected String countryCode;
     protected String countryName;
-    protected float totalArea;
+    protected double totalArea;
 
     public EastAsiaCountries() {
     }
 
-    public EastAsiaCountries(String countryCode, String countryName, float totalArea) {
+    public EastAsiaCountries(String countryCode, String countryName, double totalArea) {
         this.countryCode = countryCode;
         this.countryName = countryName;
         this.totalArea = totalArea;
@@ -34,7 +34,7 @@ public class EastAsiaCountries {
         this.countryName = countryName;
     }
 
-    public float getTotalArea() {
+    public double getTotalArea() {
         return totalArea;
     }
 
@@ -47,7 +47,7 @@ public class EastAsiaCountries {
         return "EastAsiaCountries{" + "countryCode=" + countryCode + ", countryName=" + countryName + ", totalArea=" + totalArea + '}';
     }
     
-    public String display() {
-        return "countryCode=" + countryCode + ", countryName=" + countryName + ", totalArea=" + totalArea;
+    public void  display() {
+
     }
 }

@@ -12,15 +12,15 @@ public class Country extends EastAsiaCountries {
         this.countryTerrain = countryTerrain;
     }
 
-    public Country(String countryTerrain, String countryCode, String countryName, float totalArea) {
+    public Country(String countryCode, String countryName, double totalArea, String countryTerrain) {
         super(countryCode, countryName, totalArea);
         this.countryTerrain = countryTerrain;
     }
     
     @Override
-    public String display() {
-        return "countryCode=" + countryCode + ", countryName=" + countryName +
-                ", totalArea=" + totalArea + ", countryTerrain =" + countryTerrain;
+    public void display() {
+        System.out.printf("%-10s%-25s%-20.0f%-25s\n", this.countryCode,
+                this.countryName, this.totalArea, this.countryTerrain);
     }
     
 }

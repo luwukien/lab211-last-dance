@@ -1,6 +1,8 @@
 package utilities;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import model.Country;
 
 /**
  *
@@ -47,6 +49,38 @@ public class Validation {
             }
         }
         return result;
+    }
+
+    public double inputDouble() {
+        double result = 0.0;
+
+
+        while (true) {
+            try {
+                double inputDouble = Double.parseDouble(sc.nextLine().trim());
+                if (inputDouble > 0) {
+                    result = inputDouble;
+                    break;
+                }
+                System.out.println("Input double must be > 0. Please try again: ");
+            } catch (NumberFormatException e) {
+                System.err.println(e.getMessage());
+                System.out.println("Input must be a number. Please try again: ");
+            }
+        }
+        return result;
+    }
+    
+    //check exist country by code
+    public boolean checkCodeCountry(ArrayList<Country> lc, String countryCode) {
+        boolean isExist = false;
+        for (Country country : lc) {
+            if (countryCode.equalsIgnoreCase(country.getCountryCode())) {
+                isExist = true;
+                break;
+            }
+        }
+        return isExist;
     }
     
     

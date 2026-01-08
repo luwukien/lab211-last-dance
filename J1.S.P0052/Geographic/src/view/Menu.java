@@ -15,7 +15,7 @@ public class Menu {
         System.out.println("5. Exit.");
         System.out.println("Please input your choice(1-5): ");
         
-        int choice = validation.checkInputLimit(1, 5);
+        int choice = validation.checkInputLimitChoices(1, 5);
         return choice;
     }
 }
