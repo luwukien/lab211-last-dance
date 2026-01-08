@@ -77,13 +77,15 @@ public class ManageEastAsiaCountries {
         System.out.print("Enter the name you want to search for: ");
         String countryName = validation.inputString();
         
-        if (searchCountryName(lc, countryName) == null) {
+        Country foundCountry = searchCountryName(lc, countryName);
+        
+        if (foundCountry == null) {
             System.out.println("No find any country!");
             return;
         }
         
         System.out.printf("%-10s%-25s%-20s%-25s\n", "ID", "Country", "Total Area", "Terrain");
-        searchCountryName(lc, countryName).display();
+        foundCountry.display();
         
     }
     

@@ -5,10 +5,12 @@ import model.Country;
 import view.Menu;
 
 public class Main {
-    private final static Menu menu = new Menu();
-    private final static ManageEastAsiaCountries manager = new ManageEastAsiaCountries();
+
     
     public static void main(String[] args) {
+        Menu menu = new Menu();
+        ManageEastAsiaCountries manager = new ManageEastAsiaCountries();
+        
         ArrayList<Country> lc = new ArrayList<>();
         while (true) {
             int choice = menu.displayMenu();

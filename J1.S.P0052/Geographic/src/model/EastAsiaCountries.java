@@ -38,7 +38,7 @@ public class EastAsiaCountries {
         return totalArea;
     }
 
-    public void setTotalArea(float totalArea) {
+    public void setTotalArea(double totalArea) {
         this.totalArea = totalArea;
     }
 
