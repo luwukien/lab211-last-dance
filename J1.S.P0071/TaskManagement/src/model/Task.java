@@ -7,7 +7,8 @@ import java.util.Date;
  * @author IdeaPad
  */
 public class Task {
-    private String id;
+
+    private int id;
     private String taskTypeID;
     private String requirementName;
     private Date date;
@@ -19,7 +20,18 @@ public class Task {
     public Task() {
     }
 
-    public Task(String id, String taskTypeID, String requirementName, Date date, String planFrom, String planTo, String assignee, String reviewer) {
+    /**
+     *
+     * @param id
+     * @param taskTypeID
+     * @param requirementName
+     * @param date
+     * @param planFrom
+     * @param planTo
+     * @param assignee
+     * @param reviewer
+     */
+    public Task(int id, String taskTypeID, String requirementName, Date date, String planFrom, String planTo, String assignee, String reviewer) {
         this.id = id;
         this.taskTypeID = taskTypeID;
         this.requirementName = requirementName;
@@ -30,11 +42,11 @@ public class Task {
         this.reviewer = reviewer;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -94,12 +106,4 @@ public class Task {
         this.reviewer = reviewer;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" + "id=" + id + ", taskTypeID=" + taskTypeID + ", requirementName=" +
-                requirementName + ", date=" + date + ", planFrom=" + planFrom +
-                ", planTo=" + planTo + ", assignee=" + assignee + ", reviewer=" + reviewer + '}';
-    }
-    
-    
 }
