@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,7 +22,7 @@ public class Task {
     }
 
     /**
-     *
+     *  
      * @param id
      * @param taskTypeID
      * @param requirementName
@@ -106,4 +107,30 @@ public class Task {
         this.reviewer = reviewer;
     }
 
+    @Override
+    public String toString() {
+        return "Task{" + "id=" + id + ", taskTypeID=" + taskTypeID + ", requirementName=" + requirementName
+                + ", date=" + date + ", planFrom=" + planFrom + ", planTo=" + planTo + ", assignee=" + assignee + ", reviewer=" + reviewer + '}';
+    }
+
+    public void display() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
+        System.out.printf(
+                "%-5s%-20s%-10s%-15s%-15s%-15s%-15s%-15s%n",
+                "ID", "Name", "Task", "Date", "From", "To", "Assignee", "Reviewer"
+        );
+
+        System.out.printf(
+                "%-5d%-20s%-10s%-15s%-15s%-15s%-15s%-15s%n",
+                id,
+                requirementName,
+                taskTypeID,
+                sdf.format(date),
+                planFrom,
+                planTo,
+                assignee,
+                reviewer
+        );
+    }
 }

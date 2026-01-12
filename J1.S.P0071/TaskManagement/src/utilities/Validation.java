@@ -40,7 +40,7 @@ public class Validation {
                 }
             } catch (NumberFormatException e) {
                 System.err.println(e.getMessage());
-                System.out.println("Input must be a number. Please try again: ");
+                System.out.print("Input must be a number. Please try again: ");
             }
         }
 
@@ -98,14 +98,13 @@ public class Validation {
     }
 
     public String inputPlanTime() {
-        String time = inputString();
         String result = "";
-        boolean isValid = false;
 
-        while (!isValid) {
+        while (true) {
+            String time = inputString();
             if (time.matches(VALID_FORMAT) && Double.parseDouble(time) >= 8.0 && Double.parseDouble(time) <= 17.5) {
                 result = time;
-                isValid = true;
+                break;
             } else {
                 System.err.println("The format plan must be Hours.5 or Hours.0");
                 System.out.println("Please try again: ");
@@ -116,7 +115,7 @@ public class Validation {
 
     }
 
-    public double inputInt() {
+    public int inputInt() {
         int result = 0;
 
         while (true) {
@@ -155,12 +154,19 @@ public class Validation {
         return result;
     }
 
-    public boolean checkDuplicateIdTask(int id, ArrayList<Task> allTask) {
+    /**
+     * This method helps check id task is exist in list
+     * 
+     * @param id id task 
+     * @param allTask the list task in array list task
+     * @return
+     */
+    public boolean checkExistIdTask(int id, ArrayList<Task> allTask) {
         boolean isExsit = false;
-        
+
         for (Task task : allTask) {
             if (task.getId() == id) {
-                isExsit =  true;
+                isExsit = true;
                 break;
             }
         }
