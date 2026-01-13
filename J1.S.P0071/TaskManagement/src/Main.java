@@ -1,6 +1,6 @@
 
 import view.Display;
-import controller.TaskControllers;
+import controller.TaskController;
 import java.util.ArrayList;
 import model.Task;
 
@@ -17,7 +17,7 @@ public class Main {
         ArrayList<Task> allTask = new ArrayList<>();
 
         Display display = new Display();
-        TaskControllers controller = new TaskControllers();
+        TaskController controller = new TaskController();
 
         while (true) {
             int choice = display.displayMenu();

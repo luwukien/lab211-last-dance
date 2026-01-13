@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
 import model.Task;
+import model.TaskType;
 
 /**
  *
@@ -82,9 +83,12 @@ public class Validation {
             try {
                 result = formatDate.parse(date);
                 Date now = new Date();
-
-                if (result.before(now)) {
-                    System.out.println("Date must be in the future or today! Please try again.");
+                
+                String nowStr = formatDate.format(now);
+                Date todayZeroTime = formatDate.parse(nowStr);
+                
+                if (result.before(todayZeroTime)) {
+                    System.out.println("Date must be in the future or today! Please try again");
                     continue;
                 }
                 isValid = true;
@@ -136,21 +140,7 @@ public class Validation {
 
     public String inputTaskType() {
         int choice = checkInputLimitChoices(1, 4);
-        String result = "";
-        switch (choice) {
-            case 1:
-                result = "Code";
-                break;
-            case 2:
-                result = "Test";
-                break;
-            case 3:
-                result = "Design";
-                break;
-            case 4:
-                result = "Review";
-                break;
-        }
+        String result = TaskType.getById(choice).getName();
         return result;
     }
 
