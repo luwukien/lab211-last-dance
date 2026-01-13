@@ -22,15 +22,16 @@ public class Task {
     }
 
     /**
-     *  
-     * @param id
-     * @param taskTypeID
-     * @param requirementName
-     * @param date
-     * @param planFrom
-     * @param planTo
-     * @param assignee
-     * @param reviewer
+     *  Constructs a new Task with the specified details.
+     * 
+     * @param id the unique identifier of the task
+     * @param taskTypeID the ID represent the category/type of the task
+     * @param requirementName  the name of the requirement or task description 
+     * @param date the scheduled date for the task
+     * @param planFrom the starting time of the task (e.g., "9.5")
+     * @param planTo the end time of the task (e.g., "10.5")
+     * @param assignee the name of the person assigned to perform the task
+     * @param reviewer the name of the person responsible for reviewing the task
      */
     public Task(int id, String taskTypeID, String requirementName, Date date, String planFrom, String planTo, String assignee, String reviewer) {
         this.id = id;
