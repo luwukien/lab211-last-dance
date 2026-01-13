@@ -10,7 +10,7 @@ import utilities.Validation;
  *
  * @author IdeaPad
  */
-public class TaskControllers {
+public class TaskController {
 
     private final Validation validation = new Validation();
 
@@ -18,8 +18,9 @@ public class TaskControllers {
      * this methods help add to a task into list task
      * 
      * @param allTask the list task in array task
+     * @return the id associated a task which just added.
      */
-    public void addTask(ArrayList<Task> allTask) {
+    public int addTask(ArrayList<Task> allTask) {
         int currentId = 1;
         if (allTask.isEmpty()) {
             currentId = 1;
@@ -28,7 +29,7 @@ public class TaskControllers {
         }
 
         System.out.println("--------------Add Task--------------");
-        System.out.print("Requirement Name:");
+        System.out.print("Requirement Name: ");
         String name = validation.inputString();
         System.out.print("Task Type: ");
         String type = validation.inputTaskType();
@@ -37,15 +38,25 @@ public class TaskControllers {
         System.out.print("From: ");
         String fromTime = validation.inputPlanTime();
         System.out.print("To: ");
-        String endTime = validation.inputPlanTime();
-        System.out.print("Assignee:");
+        String endTime = "";
+        while (true) {
+            endTime = validation.inputPlanTime();
+            
+            if (Double.parseDouble(endTime) >= Double.parseDouble(fromTime)) {
+                break;
+            }
+            System.out.print("Please input endTime > fromTime. Try again: ");
+        }
+        
+        System.out.print("Assignee: ");
         String assignee = validation.inputString();
         System.out.print("Reviewer: ");
         String reviewer = validation.inputString();
 
         allTask.add(new Task(currentId, type, name, date, fromTime, endTime, assignee, reviewer));
-        System.out.println("Added task successfull!!!");
-
+        System.out.println("Added task successfull with the ID " + currentId);
+        
+        return currentId;
     }
 
     /**
