@@ -4,6 +4,6 @@ package controller;
  *
  * @author IdeaPad
  */
-public class BankController {
+public class LoginSystem {
     
 }

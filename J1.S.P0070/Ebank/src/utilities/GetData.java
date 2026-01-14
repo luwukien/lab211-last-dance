@@ -10,6 +10,7 @@ public class GetData {
 
     private final Scanner sc = new Scanner(System.in);
     private final String FORMAT_ACCOUNT_NUMBER = "^[0-9]{10}$";
+    private final String FORMAT_PASSWORD = "^(([a-zA-Z]+[0-9]+)|([0-9]+[a-zA-Z]+))[a-zA-Z0-9]*$";
 
     /**
      * This method helps validate choice when user enter the number of menu
@@ -75,7 +76,38 @@ public class GetData {
         }
         return accountNumber;
     }
-    
-    
+
+    public String getPassword(String msg, String formatMsg) {
+        boolean isValid = false;
+        String password = "";
+        while (!isValid) {
+            System.out.println(msg);
+            String inputPassword = inputString();
+            if (inputPassword.matches(FORMAT_PASSWORD) && inputPassword.length() >= 8 && inputPassword.length() <= 31) {
+                password = inputPassword;
+                break;
+            }
+
+            System.out.println(formatMsg);
+        }
+        return password;
+    }
+
+    public String getCaptcha() {
+        boolean isValid = false;
+        String result = "";
+
+        while (!isValid) {
+            String inputStr = sc.nextLine().trim();
+            if (inputStr.isEmpty()) {
+                System.err.println("Input CAPTCHA string must not be empty!!");
+                System.out.print("Enter again: ");
+            } else {
+                result = inputStr;
+                isValid = true;
+            }
+        }
+        return result;
+    }
 
 }
