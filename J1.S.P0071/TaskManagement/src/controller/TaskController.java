@@ -5,15 +5,21 @@ import java.util.Date;
 import java.util.Iterator;
 import model.Task;
 import utilities.Validation;
+import view.Display;
 
 /**
  *
  * @author IdeaPad
  */
 public class TaskController {
-
+    
+    private static final int STARTING_ID = 1;
+    private static final int ID_STEP = 1;
+    
     private final Validation validation = new Validation();
-
+    private final Display display = new Display();
+    
+    
     /**
      * this methods help add to a task into list task
      * 
@@ -21,11 +27,11 @@ public class TaskController {
      * @return the id associated a task which just added.
      */
     public int addTask(ArrayList<Task> allTask) {
-        int currentId = 1;
+        int currentId;
         if (allTask.isEmpty()) {
-            currentId = 1;
+            currentId = STARTING_ID;
         } else {
-            currentId = allTask.get(allTask.size() - 1).getId() + 1;
+            currentId = allTask.get(allTask.size() - 1).getId() + ID_STEP;
         }
 
         System.out.println("--------------Add Task--------------");
@@ -89,9 +95,6 @@ public class TaskController {
      * @param allTask the list task in array task
      */
     public void showTask(ArrayList<Task> allTask) {
-        System.out.println("------------------------------------------------Task------------------------------------------------");
-        for (Task task : allTask) {
-            task.display();
-        }
+        display.displayTask(allTask);
     }
 }
