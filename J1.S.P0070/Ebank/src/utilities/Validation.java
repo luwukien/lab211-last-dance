@@ -43,11 +43,44 @@ public class Validation {
         return result;
     }
     
-    public String checkAccountNumber(ArrayList<Account> la, String accountNumber) {
-        for (Account account : la) {
+    /**
+     * 
+     * @param listAccount
+     * @param accountNumber
+     * @return 
+     */
+    public boolean checkAccountNumber(ArrayList<Account> listAccount, String accountNumber) {
+        
+        if (listAccount.isEmpty()) {
+            return false;
+        }
+        
+        for (Account account : listAccount) {
             if (account.getAccountNumber().equalsIgnoreCase(accountNumber)) {
-                
+                return true;
             }
         }
+        return false;
     }
+    
+    /**
+     * 
+     * @param listAccount
+     * @param accountNumber
+     * @param password
+     * @return 
+     */
+    public boolean checkPassword(ArrayList<Account> listAccount, String accountNumber, String password) {
+        if (listAccount.isEmpty()) {
+            return false;
+        }
+        
+        for (Account account : listAccount) {
+            if (account.getAccountNumber().equals(accountNumber) && 
+                    account.getPassword().equalsIgnoreCase(password)) {
+                return true;
+            }
+        }
+        return false;
+    } 
 }

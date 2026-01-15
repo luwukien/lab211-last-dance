@@ -60,7 +60,13 @@ public class GetData {
         }
         return result;
     }
-
+    
+    /**
+     * 
+     * @param msg
+     * @param formatMsg
+     * @return 
+     */
     public String getAccountNumber(String msg, String formatMsg) {
         boolean isValid = false;
         String accountNumber = "";
@@ -76,7 +82,13 @@ public class GetData {
         }
         return accountNumber;
     }
-
+    
+    /**
+     * 
+     * @param msg
+     * @param formatMsg
+     * @return 
+     */
     public String getPassword(String msg, String formatMsg) {
         boolean isValid = false;
         String password = "";
@@ -92,22 +104,5 @@ public class GetData {
         }
         return password;
     }
-
-    public String getCaptcha() {
-        boolean isValid = false;
-        String result = "";
-
-        while (!isValid) {
-            String inputStr = sc.nextLine().trim();
-            if (inputStr.isEmpty()) {
-                System.err.println("Input CAPTCHA string must not be empty!!");
-                System.out.print("Enter again: ");
-            } else {
-                result = inputStr;
-                isValid = true;
-            }
-        }
-        return result;
-    }
-
+    
 }
