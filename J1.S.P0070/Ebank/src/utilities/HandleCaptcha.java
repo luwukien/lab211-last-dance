@@ -48,7 +48,7 @@ public class HandleCaptcha {
         String captcha = generateCaptcha();
         
         System.out.print(msgCaptcha);
-        System.out.print(" " + captcha);
+        System.out.println(" " + captcha);
         System.out.println(msg);
 
         while (!isValid) {
@@ -63,10 +63,15 @@ public class HandleCaptcha {
         return result;
     }
     
-    public boolean checkCaptcha(String inputCaptcha) {
-        String captcha = generateCaptcha();
+    /**
+     * 
+     * @param inputCaptcha
+     * @param generateCaptcha
+     * @return 
+     */
+    public boolean checkCaptcha(String inputCaptcha, String generateCaptcha) {
         
-        return inputCaptcha.contains(captcha);
+        return inputCaptcha.contains(generateCaptcha);
     }
 
 }

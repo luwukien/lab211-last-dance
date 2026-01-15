@@ -16,16 +16,18 @@ public class Validation {
      * This method helps validate choice when user enter the number of menu
      * choice
      *
+     * @param msg
      * @param min the lowest number choice in menu choice
      * @param max the greatest number choice in menu choice
      * @return choice after validating
      */
-    public int checkInputLimitChoices(int min, int max) {
+    public int checkInputLimitChoices(String msg, int min, int max) {
         int result = 0;
         boolean isValid = false;
 
         while (!isValid) {
             try {
+                System.out.println(msg);
                 int input = Integer.parseInt(sc.nextLine().trim());
 
                 if (input < min || input > max) {
