@@ -15,7 +15,7 @@ import model.Account;
 public class LoginSystem {
 
     private final Validation validation = new Validation();
-    private final GetData getData = new GetData();
+    private final GetData dataInput = new GetData();
     private final HandleCaptcha handle = new HandleCaptcha();
 
     public void VietnamSystem(ArrayList<Account> listAccount) {
@@ -29,42 +29,48 @@ public class LoginSystem {
     }
 
     /**
-     *
-     * @param locale
-     * @param listAccount
-     * @return
+     *  Performs user login with Captcha verification and localization support
+     * 
+     * @param locale The locale for language setting (ResourseBundle)
+     * @param listAccount The list of valid accounts for credential validation 
+     * @return the account number if login successful, otherwise null
      */
     public String loginSystem(Locale locale, ArrayList<Account> listAccount) {
         String result = null;
 
-        ResourceBundle handleLanguage = ResourceBundle.getBundle("language", locale);
-        String accountNumber = getData.getAccountNumber(handleLanguage.getString("accountNumber"),
-                handleLanguage.getString("inputAccountError"));
-        String password = getData.getPassword(handleLanguage.getString("password"),
-                handleLanguage.getString("inputPasswordError"));
-
         while (true) {
-            String captchaGenerated = handle.generateCaptcha();
+            ResourceBundle handleLanguage = ResourceBundle.getBundle("language", locale);
+            String accountNumber = dataInput.getAccountNumber(handleLanguage.getString("accountNumber"),
+                    handleLanguage.getString("inputAccountError"));
+            String password = dataInput.getPassword(handleLanguage.getString("password"),
+                    handleLanguage.getString("inputPasswordError"));
 
-            String captchaInput = handle.getCaptcha(handleLanguage.getString("captcha"),
-                    handleLanguage.getString("inputCaptcha"),
-                    handleLanguage.getString("captchaError"));
+            while (true) {
+                String captchaGenerated = handle.generateCaptcha();
 
-            if (handle.checkCaptcha(captchaInput, captchaGenerated)) {
-                if (validation.checkAccountNumber(listAccount, accountNumber)
-                        && validation.checkPassword(listAccount, accountNumber, password)) {
-                    System.out.println(handleLanguage.getString("loginSuccess"));
-                    result = accountNumber;
+                String captchaInput = handle.getCaptcha(captchaGenerated,
+                        handleLanguage.getString("captcha"),
+                        handleLanguage.getString("inputCaptcha"),
+                        handleLanguage.getString("captchaInputEmpty"));
+
+                if (handle.checkCaptcha(captchaInput.trim(), captchaGenerated.trim())) {
+                    System.out.println(handleLanguage.getString("captchaValid"));
                     break;
                 } else {
-                    System.out.println(handleLanguage.getString("loginFail"));
+                    System.out.println(handleLanguage.getString("captchaError"));
                 }
+            }
+
+            if (validation.checkAccountNumber(listAccount, accountNumber)
+                    && validation.checkPassword(listAccount, accountNumber, password)) {
+                System.out.println(handleLanguage.getString("loginSuccess"));
+                result = accountNumber;
+                break;
             } else {
-                System.out.println(handleLanguage.getString("captchaError"));
+                System.out.println(handleLanguage.getString("loginFail"));
             }
         }
-
         return result;
-    }
 
+    }
 }
