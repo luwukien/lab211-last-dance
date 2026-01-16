@@ -16,7 +16,7 @@ public class GetData {
      * This method helps validate choice when user enter the number of menu
      * choice
      *
-     * @param msg ??
+     * @param msg the prompt message for the captcha
      * @param min the lowest number choice in menu choice
      * @param max the greatest number choice in menu choice
      * @return choice after validating
@@ -62,10 +62,11 @@ public class GetData {
     }
     
     /**
+     * Display prompt must be input account number, and do not empty
      * 
-     * @param msg
-     * @param formatMsg
-     * @return 
+     * @param msg the prompt message for account number
+     * @param formatMsg the error message displayed when input not valid
+     * @return  account number if the users enter account number valid
      */
     public String getAccountNumber(String msg, String formatMsg) {
         boolean isValid = false;
@@ -84,10 +85,11 @@ public class GetData {
     }
     
     /**
+     * Display prompt must be input password, and do not empty
      * 
-     * @param msg
-     * @param formatMsg
-     * @return 
+     * @param msg the prompt message for password
+     * @param formatMsg the error message displayed when input not valid
+     * @return password number if the user enter password valid
      */
     public String getPassword(String msg, String formatMsg) {
         boolean isValid = false;

@@ -1,6 +1,6 @@
 package view;
 
-import utilities.Validation;
+import utilities.GetData;
 
 /**
  *
@@ -8,7 +8,7 @@ import utilities.Validation;
  */
 public class Display {
 
-    private final Validation validation = new Validation();
+    private final GetData dataInput = new GetData();
 
     public int displayMenu() {
         System.out.println("-------Login Program-------");
@@ -16,7 +16,7 @@ public class Display {
         System.out.println("2. English");
         System.out.println("3. Exit");
         
-        int choice = validation.checkInputLimitChoices("Input your choice: ", 1, 4);
+        int choice = dataInput.checkInputLimitChoices("Input your choice: ", 1, 4);
         return choice;
     }
 }

@@ -1,7 +1,6 @@
 package utilities;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import model.Account;
 
 /**
@@ -9,47 +8,13 @@ import model.Account;
  * @author IdeaPad
  */
 public class Validation {
-
-    private final Scanner sc = new Scanner(System.in);
-
-    /**
-     * This method helps validate choice when user enter the number of menu
-     * choice
-     *
-     * @param msg
-     * @param min the lowest number choice in menu choice
-     * @param max the greatest number choice in menu choice
-     * @return choice after validating
-     */
-    public int checkInputLimitChoices(String msg, int min, int max) {
-        int result = 0;
-        boolean isValid = false;
-
-        while (!isValid) {
-            try {
-                System.out.println(msg);
-                int input = Integer.parseInt(sc.nextLine().trim());
-
-                if (input < min || input > max) {
-                    System.err.println("Input must be in a range [" + min + ", " + max + "] ");
-                } else {
-                    result = input;
-                    isValid = true;
-                }
-            } catch (NumberFormatException e) {
-                System.err.println(e.getMessage());
-                System.out.print("Input must be a number. Please try again: ");
-            }
-        }
-
-        return result;
-    }
     
     /**
+     * check exist a account number 
      * 
-     * @param listAccount
-     * @param accountNumber
-     * @return 
+     * @param listAccount The list of valid accounts for credential validation 
+     * @param accountNumber a string account number by user input
+     * @return true if a account number matches with any listAccount, otherwise false
      */
     public boolean checkAccountNumber(ArrayList<Account> listAccount, String accountNumber) {
         
@@ -66,11 +31,12 @@ public class Validation {
     }
     
     /**
+     * check a account matches password and accountNumber
      * 
-     * @param listAccount
-     * @param accountNumber
-     * @param password
-     * @return 
+     * @param listAccount The list of valid accounts for credential validation 
+     * @param accountNumber a string account number by user input
+     * @param password a string password by user input
+     * @return true if a account matches the password, and accountNumber and exist in listAccount
      */
     public boolean checkPassword(ArrayList<Account> listAccount, String accountNumber, String password) {
         if (listAccount.isEmpty()) {
@@ -79,7 +45,7 @@ public class Validation {
         
         for (Account account : listAccount) {
             if (account.getAccountNumber().equals(accountNumber) && 
-                    account.getPassword().equalsIgnoreCase(password)) {
+                    account.getPassword().equals(password)) {
                 return true;
             }
         }

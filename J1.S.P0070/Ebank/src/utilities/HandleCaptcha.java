@@ -36,19 +36,20 @@ public class HandleCaptcha {
     }
 
     /**
-     *
-     * @param msgCaptcha
-     * @param msg
-     * @param formatMsg
-     * @return
+     *  Display the generated captcha and retrieves user input
+     * 
+     * @param generateCaptcha  the generated captcha code to be displayed
+     * @param msgCaptcha  the label message for the captcha
+     * @param msg the prompt  message  requesting user input
+     * @param formatMsg the error message displayed when input is empty
+     * @return the valid, non-empty string entered by the user
      */
-    public String getCaptcha(String msgCaptcha, String msg, String formatMsg) {
+    public String getCaptcha(String generateCaptcha, String msgCaptcha, String msg, String formatMsg) {
         boolean isValid = false;
         String result = "";
-        String captcha = generateCaptcha();
-        
+
         System.out.print(msgCaptcha);
-        System.out.println(" " + captcha);
+        System.out.println(" " + generateCaptcha);
         System.out.println(msg);
 
         while (!isValid) {
@@ -62,16 +63,16 @@ public class HandleCaptcha {
         }
         return result;
     }
-    
+
     /**
+     * Validates the user's captcha input against the generated code
      * 
-     * @param inputCaptcha
-     * @param generateCaptcha
-     * @return 
+     * @param inputCaptcha the captcha characters enterd by user
+     * @param generateCaptcha the actual  generated captcha code 
+     * @return true if  the input captcha matches the generated code, otherwise false
      */
     public boolean checkCaptcha(String inputCaptcha, String generateCaptcha) {
-        
-        return inputCaptcha.contains(generateCaptcha);
-    }
 
+        return generateCaptcha.contains(inputCaptcha);
+    }
 }

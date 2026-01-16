@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class AccountList {
 
-    public ArrayList database() {
+    public ArrayList<Account> database() {
         ArrayList<Account> listAccount = new ArrayList<>();
 
         listAccount.add(new Account("0123456789", "123456ab"));
