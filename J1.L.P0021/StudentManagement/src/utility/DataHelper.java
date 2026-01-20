@@ -1,5 +1,7 @@
 package utility;
 
+import model.CourseType;
+
 import java.util.Scanner;
 
 /**
@@ -9,7 +11,10 @@ import java.util.Scanner;
 
 public class DataHelper {
     private final Scanner sc = new Scanner(System.in);
-
+    private final String YES_CHOICE = "Y";
+    private final String NO_CHOICE = "N";
+    private final String UPDATE_CHOICE = "U";
+    private final String DELETE_CHOICE = "D";
 
     /**
      * This method helps validate choice when user enter the number of menu choice
@@ -43,12 +48,12 @@ public class DataHelper {
     }
 
     /**
+     * This method helps the string valid when users enter a string
      *
-     * @param msg
-     * @param formatMsg
-     * @return
+     * @param msg the prompt message require input
+     * @return a string if it is valid
      */
-    public String inputString(String msg, String formatMsg) {
+    public String inputString(String msg) {
         boolean isValid = false;
         String result = "";
 
@@ -56,8 +61,7 @@ public class DataHelper {
             System.out.println(msg);
             String inputStr = sc.nextLine().trim();
             if (inputStr.isEmpty()) {
-                System.err.println("Input string must not be empty!!");
-                System.out.println(formatMsg);
+                System.err.println("String must be enter at least 1 character");
                 System.out.print("Enter again: ");
             } else {
                 result = inputStr;
@@ -66,6 +70,69 @@ public class DataHelper {
         }
         return result;
     }
+
+    /**
+     *  This method helps the system get Yes/No choice from the user
+     *
+     * @param msg the prompt message require input
+     * @param formatMsg the prompt message will be displayed if input user not valid
+     * @return true if user enter Y/y, otherwise false if input is N/n
+     */
+    public boolean getYesNoChoice(String msg, String formatMsg) {
+        while (true) {
+            String choice = inputString(msg);
+            if (choice.equalsIgnoreCase(YES_CHOICE)) {
+                return true;
+            }
+
+            if (choice.equalsIgnoreCase((NO_CHOICE))) {
+                return false;
+            }
+            System.err.println(formatMsg);
+            System.out.println(msg);
+        }
+    }
+
+    /**
+     * This method helps the system get Update/Delete choice from the user
+     *
+     * @param msg the prompt message require input
+     * @param formatMsg the prompt message will be displayed if input user not valid
+     * @return true if user enter U/u, otherwise false if input is D/d
+     */
+    public boolean getUpdateDelete(String msg, String formatMsg) {
+        while (true) {
+            String choice = inputString(msg);
+            if (choice.equalsIgnoreCase(UPDATE_CHOICE)) {
+                return true;
+            }
+
+            if (choice.equalsIgnoreCase((DELETE_CHOICE))) {
+                return false;
+            }
+            System.err.println(formatMsg);
+            System.out.println(msg);
+        }
+    }
+
+    /**
+     * Getting the type of course the choice from the user
+     *
+     * @param msg the prompt message require input
+     * @return CourseType based on the choice of user
+     */
+    public CourseType inputCourseName(String msg) {
+        System.out.println("1. Java");
+        System.out.println("2. .Net");
+        System.out.println("3. C/C++");
+
+        int choice = checkInputLimitChoices(msg, 1, 3);
+        CourseType course = CourseType.getById(choice);
+
+        return course;
+    }
+
+
 
 
 }
