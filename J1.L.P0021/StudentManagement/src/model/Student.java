@@ -11,7 +11,7 @@ public class Student {
     private String semester;
     private CourseType courseName;
 
-    public Student(CourseType courseName, String semester, String studentName, String id) {
+    public Student(String id, String studentName, String semester, CourseType courseName) {
         this.courseName = courseName;
         this.semester = semester;
         this.studentName = studentName;
