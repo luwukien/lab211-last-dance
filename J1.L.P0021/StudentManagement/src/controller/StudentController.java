@@ -4,8 +4,11 @@ import model.CourseType;
 import model.Student;
 import utility.DataHelper;
 import utility.Validation;
+import view.Display;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * @author Chi Kien-Luu | github/luwukien
@@ -15,12 +18,14 @@ import java.util.ArrayList;
 public class StudentController {
     private final DataHelper dataHelper = new DataHelper();
     private final Validation validation = new Validation();
+    private final Display display = new Display();
     private final int LEAST_STUDENT_NUMBER = 10;
 
     /**
+     * Create a valid student and then add list Student. Create at least 10 student
      *
-     * @param listStudent
-     * @return
+     * @param listStudent a list valid student
+     * @return creat at least 10 valid student
      */
     public ArrayList<Student> createStudent(ArrayList<Student> listStudent) {
         while(true) {
@@ -53,6 +58,65 @@ public class StudentController {
             }
         }
         return listStudent;
+
+    }
+
+    /**
+     *  sort student by name ascending
+     *
+     * @param listStudent a list valid student
+     */
+    public ArrayList<Student> sortStudentByName(ArrayList<Student> listStudent) {
+        Collections.sort(listStudent, Comparator.comparing(Student::getStudentName));
+        return listStudent;
+    }
+
+    /**
+     *  The logic find student by name
+     *
+     * @param listStudent a list valid student
+     * @param name the name student who user want to find
+     * @return a list student name contain name student who user want to find
+     */
+    public ArrayList<Student> findStudentByName(ArrayList<Student> listStudent, String name) {
+        ArrayList<Student> foundStudent = new ArrayList<>();
+        if (listStudent != null && !listStudent.isEmpty()) {
+            for (Student student : listStudent) {
+                if (student.getStudentName().toLowerCase().contains(name.toLowerCase())) {
+                    foundStudent.add(student);
+                }
+            }
+        }
+
+        if (!foundStudent.isEmpty()) {
+            foundStudent = sortStudentByName(foundStudent);
+        }
+        return foundStudent;
+    }
+
+    /**
+     *  The UI which user interact
+     *
+     * @param listStudent a list valid student
+     * @return a list sorted student and some information related to
+     */
+    public ArrayList<Student> findStudent(ArrayList<Student> listStudent) {
+        ArrayList<Student> result = new ArrayList<>();
+
+        if (listStudent == null || listStudent.isEmpty()) {
+            System.err.println("List student is empty. Cannot find!!!");
+        } else  {
+            String name = dataHelper.inputString("Enter the name student who you want to find: ");
+            result = findStudentByName(listStudent, name.toLowerCase());
+
+            if (result.isEmpty()) {
+                System.out.println("No student found");
+            } else {
+                System.out.printf("%-10s%-25s%-10s%-25s", "ID", "Name", "Semester", "Course");
+                for (Student student : result) display.displayStudent(student);
+            }
+        }
+        return result;
 
     }
 }
