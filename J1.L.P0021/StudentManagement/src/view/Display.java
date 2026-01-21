@@ -1,5 +1,7 @@
 package view;
 
+import model.CourseType;
+import model.Student;
 import utility.DataHelper;
 
 /**
@@ -20,5 +22,17 @@ public class Display {
 
         int choice = validation.checkInputLimitChoices("Enter your choice",1, 4);
         return choice;
+    }
+
+    /**
+     *
+     * @param student
+     */
+    public void displayStudent(Student student) {
+        String id = student.getId();
+        String name = student.getStudentName();
+        CourseType courseType = student.getCourseName();
+        String semester = student.getSemester();
+        System.out.printf("%-10s%-25s%-10s%-25s", id, name, semester, courseType);
     }
 }

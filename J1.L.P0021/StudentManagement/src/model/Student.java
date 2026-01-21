@@ -11,6 +11,13 @@ public class Student {
     private String semester;
     private CourseType courseName;
 
+    /**
+     *
+     * @param id
+     * @param studentName
+     * @param semester
+     * @param courseName
+     */
     public Student(String id, String studentName, String semester, CourseType courseName) {
         this.courseName = courseName;
         this.semester = semester;
