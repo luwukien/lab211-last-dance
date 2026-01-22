@@ -4,6 +4,8 @@ import model.CourseType;
 import model.Student;
 import utility.DataHelper;
 
+import java.util.HashMap;
+
 /**
  * @author Chi Kien-Luu | github/luwukien
  * Initialize Date: 19/01/2026
@@ -34,5 +36,45 @@ public class Display {
         CourseType courseType = student.getCourseName();
         String semester = student.getSemester();
         System.out.printf("%-10s%-25s%-10s%-25s", id, name, semester, courseType);
+    }
+
+    public void displayHeader() {
+        System.out.printf("%-10s%-25s%-10s%-25s", "ID", "Name", "Semester", "Course");
+    }
+
+    public void displayCreateHeader() {
+        System.out.println("============ Create New Student ============ ");
+    }
+
+    public void displayDeleteHeader() {
+        System.out.println("============ Delete New Student ============ ");
+    }
+
+    public void displayUpdateHeader() {
+        System.out.println("============ Update New Student ============ ");
+    }
+
+    public void displayReportHeader() {
+        System.out.println("============ Report New Student ============ ");
+    }
+
+    /**
+     *
+     * @param reportMap
+     */
+    public void displayReport(HashMap<String, Integer> reportMap) {
+        if (reportMap == null) {
+            System.err.println("List is empty. Nothing to report!!!");
+        }
+
+        displayReportHeader();
+        for (String key : reportMap.keySet()) {
+            String[] fullKey = key.split("\\|");
+            String name = fullKey[0];
+            String course = fullKey[1];
+            int total = reportMap.get(key);
+
+            System.out.printf("%-20s | %-10s | %-5d\n", name, course, total);
+        }
     }
 }
