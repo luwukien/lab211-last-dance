@@ -1,9 +1,11 @@
 package view;
 
+import controller.StudentController;
 import model.CourseType;
 import model.Student;
 import utility.DataHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,6 +15,7 @@ import java.util.HashMap;
 
 public class Display {
     private final DataHelper validation = new DataHelper();
+    private final StudentController studentController = new StudentController();
 
     public int displayMenu() {
         System.out.println("============== Student Management Program ==============");
@@ -47,7 +50,7 @@ public class Display {
     }
 
     public void displayDeleteHeader() {
-        System.out.println("============ Delete New Student ============ ");
+        System.out.println("============ Delete Student ============ ");
     }
 
     public void displayUpdateHeader() {
@@ -55,7 +58,12 @@ public class Display {
     }
 
     public void displayReportHeader() {
-        System.out.println("============ Report New Student ============ ");
+        System.out.println("============ Report Student ============ ");
+    }
+
+    public void displaySortedStudentByName(ArrayList<Student> listStudent) {
+        System.out.println("============ The sorted list Student ============");
+        System.out.println(studentController.sortStudentByName(listStudent));
     }
 
     /**
