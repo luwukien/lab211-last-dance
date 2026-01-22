@@ -11,6 +11,10 @@ public class Student {
     private String semester;
     private CourseType courseName;
 
+    public Student() {
+
+    }
+
     /**
      *
      * @param id
@@ -27,10 +31,6 @@ public class Student {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getStudentName() {
