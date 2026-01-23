@@ -15,7 +15,6 @@ import java.util.HashMap;
 
 public class Display {
     private final DataHelper validation = new DataHelper();
-    private final StudentController studentController = new StudentController();
 
     public int displayMenu() {
         System.out.println("============== Student Management Program ==============");
@@ -45,8 +44,8 @@ public class Display {
         System.out.printf("%-10s%-25s%-10s%-25s", "ID", "Name", "Semester", "Course");
     }
 
-    public void displayCreateHeader() {
-        System.out.println("============ Create New Student ============ ");
+    public void displayCreateHeader(int countStudent) {
+        System.out.println("============ Create New Student "+ countStudent + "============ ");
     }
 
     public void displayDeleteHeader() {
@@ -61,7 +60,7 @@ public class Display {
         System.out.println("============ Report Student ============ ");
     }
 
-    public void displaySortedStudentByName(ArrayList<Student> listStudent) {
+    public void displaySortedStudentByName(ArrayList<Student> listStudent, StudentController studentController) {
         System.out.println("============ The sorted list Student ============");
         System.out.println(studentController.sortStudentByName(listStudent));
     }

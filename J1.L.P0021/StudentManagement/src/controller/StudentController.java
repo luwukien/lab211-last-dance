@@ -19,18 +19,17 @@ import java.util.HashMap;
 public class StudentController {
     private final DataHelper dataHelper = new DataHelper();
     private final Validation validation = new Validation();
-    private final Display display = new Display();
-    private final int LEAST_STUDENT_NUMBER = 10;
-
+    private final int LEAST_STUDENT_NUMBER = 3;
+    private int FIRST_INDEX_STUDENT = 1;
     /**
      * Create a valid student and then add list Student. Create at least 10 student
      *
      * @param listStudent a list valid student
      * @return creat at least 10 valid student
      */
-    public ArrayList<Student> createStudent(ArrayList<Student> listStudent) {
+    public ArrayList<Student> createStudent(ArrayList<Student> listStudent, Display display) {
         while(true) {
-            display.displayCreateHeader();
+            display.displayCreateHeader(FIRST_INDEX_STUDENT++);
             String id = dataHelper.inputString("Enter id:");
             String name = dataHelper.inputString("Enter student name: ");
 
@@ -101,7 +100,7 @@ public class StudentController {
      * @param listStudent a list valid student
      * @return a list sorted student and some information related to
      */
-    public ArrayList<Student> findStudent(ArrayList<Student> listStudent) {
+    public ArrayList<Student> findStudent(ArrayList<Student> listStudent, Display display) {
         ArrayList<Student> result = new ArrayList<>();
 
         if (listStudent == null || listStudent.isEmpty()) {
@@ -114,7 +113,7 @@ public class StudentController {
                 System.out.println("No student found");
             } else {
                 display.displayHeader();
-                for (Student student : result) display.displayStudent(student);
+                for (Student student : result)  display.displayStudent(student);
             }
         }
         return result;
@@ -185,7 +184,7 @@ public class StudentController {
      * @param listStudent a list valid student
      * @return student who was deleted or updated
      */
-    public Student updateDeleteStudent(ArrayList<Student> listStudent) {
+    public Student updateDeleteStudent(ArrayList<Student> listStudent, Display display) {
         Student resultStudent = null;
         boolean isFinished = false;
         while (!isFinished) {

@@ -14,21 +14,19 @@ public class Main {
             int choice = display.displayMenu();
             switch (choice) {
                 case 1:
-                    controller.createStudent(listStudent);
+                    controller.createStudent(listStudent, display);
                     break;
                 case 2:
-                    display.displaySortedStudentByName(listStudent);
+                    ArrayList<Student> foundStudents = controller.findStudent(listStudent, display);
+                    display.displaySortedStudentByName(foundStudents, controller);
                     break;
                 case 3:
-                    controller.findStudent(listStudent);
+                    controller.updateDeleteStudent(listStudent, display);
                     break;
                 case 4:
-                    controller.updateDeleteStudent(listStudent);
-                    break;
-                case 5:
                     display.displayReport(controller.generateReport(listStudent));
                     break;
-                case 6:
+                case 5:
                     return;
             }
         }
