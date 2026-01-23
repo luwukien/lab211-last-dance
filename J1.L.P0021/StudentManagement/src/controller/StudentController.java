@@ -202,39 +202,40 @@ public class StudentController {
      * @return student who was deleted or updated
      */
     public Student updateDeleteStudent(ArrayList<Student> listStudent, Display display) {
+        Student result = null;
+
         if (listStudent.isEmpty()) {
             System.out.println("List is empty. Nothing to update or delete!");
-            return null;
-        }
+        } else {
+            String studentId = dataHelper.inputString("Input student ID: ");
+            ArrayList<Student> listFound = findListStudentById(listStudent, studentId);
 
-        String studentId = dataHelper.inputString("Input student ID: ");
-        ArrayList<Student> listFound = findListStudentById(listStudent, studentId);
+            if (listFound.isEmpty()) {
+                System.err.println("Not found any student has " + studentId);
+            }
 
-        if (listFound.isEmpty()) {
-            System.err.println("Not found any student has " + studentId);
-            return null;
-        }
+            Student studentToProcess = listFound.get(0);
 
-        Student studentToProcess = listFound.get(0);
+            if (listFound.size() > 1) {
+                display.displayAllRecordsOfStudent(listFound);
 
-        if (listFound.size() > 1) {
-            display.displayAllRecordsOfStudent(listFound);
-
-            int index = dataHelper.checkInputLimitChoices("Choose record to process: ",
-                    1, listFound.size());
-            studentToProcess = listFound.get(index - 1);
-        }
+                int index = dataHelper.checkInputLimitChoices("Choose record to process: ",
+                        1, listFound.size());
+                studentToProcess = listFound.get(index - 1);
+            }
 
 //            Getting choice from user. True: Update; False: Delete
-        boolean isUpdate = dataHelper.getUpdateDelete("Do you want to update (U) or delete (D) this student",
-                "You can only select U/u to update or D/d to delete!!!.");
-        if (isUpdate) {
-            display.displayUpdateHeader();
-            return updateStudent(studentToProcess);
-        } else {
-            display.displayDeleteHeader();
-            return deleteStudent(listStudent, studentToProcess);
+            boolean isUpdate = dataHelper.getUpdateDelete("Do you want to update (U) or delete (D) this student",
+                    "You can only select U/u to update or D/d to delete!!!.");
+            if (isUpdate) {
+                display.displayUpdateHeader();
+                result = updateStudent(studentToProcess);
+            } else {
+                display.displayDeleteHeader();
+                result =  deleteStudent(listStudent, studentToProcess);
+            }
         }
+        return result;
     }
 
     /**
