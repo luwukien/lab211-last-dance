@@ -29,13 +29,17 @@ public class StudentController {
      */
     public ArrayList<Student> createStudent(ArrayList<Student> listStudent, Display display) {
         while(true) {
-            display.displayCreateHeader(FIRST_INDEX_STUDENT++);
+            display.displayCreateHeader(FIRST_INDEX_STUDENT);
             String id = dataHelper.inputString("Enter id:");
-            String name = dataHelper.inputString("Enter student name: ");
 
-            if (!validation.isNameMatchWithId(listStudent, id, name)) {
-                System.err.println("The id exist in the list Student. Please input other id!!!");
-                continue;
+            Student existingStudent = findStudentById(listStudent, id);
+            String name;
+
+            if (existingStudent != null) {
+                name = existingStudent.getStudentName();
+                System.out.println("Student ID exists. System automatically retrieved name: " + name);
+            } else {
+                name = dataHelper.inputString("Enter student name: ");
             }
 
             String semester = dataHelper.inputString("Enter semester: ");
@@ -48,6 +52,7 @@ public class StudentController {
 
             listStudent.add(new Student(id, name, semester, course));
             System.out.println("Added successfully the student");
+            FIRST_INDEX_STUDENT++;
 
             if (listStudent.size() >= LEAST_STUDENT_NUMBER) {
                 boolean choice = dataHelper.getYesNoChoice("Do you want to continue (Y/N)?",
@@ -121,11 +126,11 @@ public class StudentController {
     }
 
     /**
-     *  This method helps find student by id
      *
-     * @param listStudent a list valid student
-     * @param studentId the student id who user want to find
-     * @return Student if id is found, otherwise return null
+     *
+     * @param listStudent
+     * @param studentId
+     * @return
      */
     public Student findStudentById(ArrayList<Student> listStudent, String studentId) {
         Student foundStudent = null;
@@ -141,41 +146,53 @@ public class StudentController {
     }
 
     /**
-     *  This method helps update the information of student: name, semester, course
+     *  This method helps find student by id
      *
-     * @param listStudent  a list valid student
-     * @param studentId the student id who user want to modifier
-     * @return Student with new information updated
+     * @param listStudent a list valid student
+     * @param studentId the student id who user want to find
+     * @return Student if id is found, otherwise return null
      */
-    public Student updateStudent(ArrayList<Student> listStudent, String studentId) {
-        Student foundStudent = findStudentById(listStudent, studentId);
-        if (foundStudent != null) {
-            int indexOfStudent = listStudent.indexOf(foundStudent);
-            String name = dataHelper.inputString("Name new: ");
-            foundStudent.setStudentName(name);
-            String semester = dataHelper.inputString("Semester new: ");
-            foundStudent.setSemester(semester);
-            CourseType courseName =  dataHelper.inputCourseName("Course new: ");
-            foundStudent.setCourseName(courseName);
-
-            listStudent.set(indexOfStudent, foundStudent);
+    public ArrayList<Student> findListStudentById(ArrayList<Student> listStudent, String studentId) {
+        ArrayList<Student> foundStudent = null;
+        if (listStudent != null && !listStudent.isEmpty()) {
+            for (Student student : listStudent) {
+                if (student.getId().equalsIgnoreCase(studentId)) {
+                    foundStudent.add(student);
+                    break;
+                }
+            }
         }
         return foundStudent;
+    }
+
+    /**
+     *  This method helps update the information of student: name, semester, course
+     *
+     * @param student
+     * @return Student with new information updated
+     */
+    public Student updateStudent(Student student) {
+        System.out.println("Updating info for student: " + student.getStudentName());
+        String name = dataHelper.inputString("New Name: ");
+        student.setStudentName(name);
+        String semester = dataHelper.inputString("New Semester: ");
+        student.setSemester(semester);
+        CourseType courseName =  dataHelper.inputCourseName("New Course: ");
+        student.setCourseName(courseName);
+        System.out.println("Update successfully the student!!!");
+        return student;
     }
 
     /**
      * This method helps hard delete from the list student
      *
      * @param listStudent a list valid student
-     * @param studentId the student id who user want to delete
      * @return Student who was deleted from the list student
      */
-    public Student deleteStudent(ArrayList<Student> listStudent, String studentId) {
-        Student foundStudent = findStudentById(listStudent, studentId);
-        if (foundStudent != null) {
-            listStudent.remove(foundStudent);
-        }
-        return foundStudent;
+    public Student deleteStudent(ArrayList<Student> listStudent, Student StudentToDelete) {
+        listStudent.remove(StudentToDelete);
+        System.out.println("Delete successfully the student!!!");
+        return StudentToDelete;
     }
 
     /**
@@ -185,33 +202,39 @@ public class StudentController {
      * @return student who was deleted or updated
      */
     public Student updateDeleteStudent(ArrayList<Student> listStudent, Display display) {
-        Student resultStudent = null;
-        boolean isFinished = false;
-        while (!isFinished) {
-            String studentId = dataHelper.inputString("Input student ID: ");
-
-            if (studentId == null) {
-                System.out.println("Not found any student has " + studentId);
-                continue;
-            }
-//            Getting choice from user. True: Update; False: Delete
-            boolean isUpdate = dataHelper.getUpdateDelete("Do you want to update (U) or delete (D) this student",
-                    "You can only select U/u to update or D/d to delete!!!.");
-            if (isUpdate) {
-                display.displayUpdateHeader();
-                resultStudent = updateStudent(listStudent, studentId);
-                System.out.println("Update successfully the student!!!");
-            } else {
-                display.displayDeleteHeader();
-                resultStudent = deleteStudent(listStudent, studentId);
-                System.out.println("Delete successfully the student!!!");
-            }
-
-            display.displayHeader();
-            display.displayStudent(resultStudent);
-            isFinished = true;
+        if (listStudent.isEmpty()) {
+            System.out.println("List is empty. Nothing to update or delete!");
+            return null;
         }
-        return resultStudent;
+
+        String studentId = dataHelper.inputString("Input student ID: ");
+        ArrayList<Student> listFound = findListStudentById(listStudent, studentId);
+
+        if (listFound.isEmpty()) {
+            System.err.println("Not found any student has " + studentId);
+            return null;
+        }
+
+        Student studentToProcess = listFound.get(0);
+
+        if (listFound.size() > 1) {
+            display.displayAllRecordsOfStudent(listFound);
+
+            int index = dataHelper.checkInputLimitChoices("Choose record to process: ",
+                    1, listFound.size());
+            studentToProcess = listFound.get(index - 1);
+        }
+
+//            Getting choice from user. True: Update; False: Delete
+        boolean isUpdate = dataHelper.getUpdateDelete("Do you want to update (U) or delete (D) this student",
+                "You can only select U/u to update or D/d to delete!!!.");
+        if (isUpdate) {
+            display.displayUpdateHeader();
+            return updateStudent(studentToProcess);
+        } else {
+            display.displayDeleteHeader();
+            return deleteStudent(listStudent, studentToProcess);
+        }
     }
 
     /**

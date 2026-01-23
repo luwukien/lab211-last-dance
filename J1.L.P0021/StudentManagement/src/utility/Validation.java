@@ -34,24 +34,6 @@ public class Validation {
         return false;
     }
 
-    /**
-     *
-     * @param listStudent
-     * @param id
-     * @param name
-     * @return
-     */
-    public boolean isNameMatchWithId(ArrayList<Student> listStudent, String id, String name) {
-        for (Student student : listStudent) {
-            if (student.getId().equalsIgnoreCase(id)) {
-                if (student.getStudentName().equalsIgnoreCase(name)) {
-                    return true;
-                }
-                return false;
-            }
-        }
-        return true;
-    }
 
 
 }

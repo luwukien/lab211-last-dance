@@ -24,7 +24,7 @@ public class Display {
         System.out.println(" 4.	Report");
         System.out.println(" 5.	Exit");
 
-        int choice = validation.checkInputLimitChoices("Enter your choice",1, 4);
+        int choice = validation.checkInputLimitChoices("Enter your choice: ",1, 5);
         return choice;
     }
 
@@ -37,11 +37,11 @@ public class Display {
         String name = student.getStudentName();
         CourseType courseType = student.getCourseName();
         String semester = student.getSemester();
-        System.out.printf("%-10s%-25s%-10s%-25s", id, name, semester, courseType);
+        System.out.printf("%-10s%-25s%-10s%-25s\n", id, name, semester, courseType);
     }
 
     public void displayHeader() {
-        System.out.printf("%-10s%-25s%-10s%-25s", "ID", "Name", "Semester", "Course");
+        System.out.printf("%-10s%-25s%-10s%-25s\n", "ID", "Name", "Semester", "Course");
     }
 
     public void displayCreateHeader(int countStudent) {
@@ -49,20 +49,32 @@ public class Display {
     }
 
     public void displayDeleteHeader() {
-        System.out.println("============ Delete Student ============ ");
+        System.out.println("============ Delete Student ============\n");
     }
 
     public void displayUpdateHeader() {
-        System.out.println("============ Update New Student ============ ");
+        System.out.println("============ Update New Student ============\n");
     }
 
     public void displayReportHeader() {
-        System.out.println("============ Report Student ============ ");
+        System.out.println("============ Report Student ============\n");
     }
 
     public void displaySortedStudentByName(ArrayList<Student> listStudent, StudentController studentController) {
-        System.out.println("============ The sorted list Student ============");
+        System.out.println("============ The sorted list Student ============\n");
         System.out.println(studentController.sortStudentByName(listStudent));
+    }
+
+    public void displayAllRecordsOfStudent(ArrayList<Student> foundList) {
+        System.out.println("============ The found list Student ============\n");
+        System.out.printf("%-5s%-20s%-10s\n", "No", "Name", "Course");
+        int countStudent = 0;
+        for (Student student : foundList) {
+            countStudent++;
+            String name = student.getStudentName();
+            CourseType courseType = student.getCourseName();
+            System.out.printf("%-5s%-20s%-10s\n", countStudent, name, courseType);
+        }
     }
 
     /**
@@ -72,6 +84,7 @@ public class Display {
     public void displayReport(HashMap<String, Integer> reportMap) {
         if (reportMap == null) {
             System.err.println("List is empty. Nothing to report!!!");
+            return;
         }
 
         displayReportHeader();

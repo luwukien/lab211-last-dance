@@ -30,7 +30,7 @@ public class DataHelper {
 
         while (!isValid) {
             try {
-                System.out.println(msg);
+                System.out.print(msg);
                 int input = Integer.parseInt(sc.nextLine().trim());
                 if (input < min || input > max) {
                     System.err.println("Input must be in a range [" + min + ", " + max + "] ");
