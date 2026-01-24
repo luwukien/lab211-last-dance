@@ -21,6 +21,7 @@ public class StudentController {
     private final Validation validation = new Validation();
     private final int LEAST_STUDENT_NUMBER = 3;
     private int FIRST_INDEX_STUDENT = 1;
+
     /**
      * Create a valid student and then add list Student. Create at least 10 student
      *
@@ -116,9 +117,6 @@ public class StudentController {
 
             if (result.isEmpty()) {
                 System.out.println("No student found");
-            } else {
-                display.displayHeader();
-                for (Student student : result)  display.displayStudent(student);
             }
         }
         return result;
@@ -153,12 +151,11 @@ public class StudentController {
      * @return Student if id is found, otherwise return null
      */
     public ArrayList<Student> findListStudentById(ArrayList<Student> listStudent, String studentId) {
-        ArrayList<Student> foundStudent = null;
+        ArrayList<Student> foundStudent = new ArrayList<>();
         if (listStudent != null && !listStudent.isEmpty()) {
             for (Student student : listStudent) {
                 if (student.getId().equalsIgnoreCase(studentId)) {
                     foundStudent.add(student);
-                    break;
                 }
             }
         }
