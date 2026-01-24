@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @author Chi Kien-Luu | github/luwukien
+ * @author Chi Kien Luu | github.com/luwukien
  * Initialize Date: 19/01/2026
  */
 
