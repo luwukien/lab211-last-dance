@@ -62,7 +62,10 @@ public class Display {
 
     public void displaySortedStudentByName(ArrayList<Student> listStudent, StudentController studentController) {
         System.out.println("============ The sorted list Student ============\n");
-        System.out.println(studentController.sortStudentByName(listStudent));
+        displayHeader();
+        for (Student student : studentController.sortStudentByName(listStudent)) {
+            displayStudent(student);
+        }
     }
 
     public void displayAllRecordsOfStudent(ArrayList<Student> foundList) {

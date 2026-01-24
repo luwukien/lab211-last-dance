@@ -27,6 +27,7 @@ public class Main {
                     display.displayReport(controller.generateReport(listStudent));
                     break;
                 case 5:
+                    System.out.println("Good bye! See you again!");
                     return;
             }
         }
