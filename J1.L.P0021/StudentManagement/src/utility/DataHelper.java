@@ -72,31 +72,36 @@ public class DataHelper {
     }
 
     /**
-     *  This method helps the system get Yes/No choice from the user
+     * This method helps the system get Yes/No choice from the user
      *
-     * @param msg the prompt message require input
+     * @param msg       the prompt message require input
      * @param formatMsg the prompt message will be displayed if input user not valid
      * @return true if user enter Y/y, otherwise false if input is N/n
      */
     public boolean getYesNoChoice(String msg, String formatMsg) {
-        while (true) {
+        boolean result = false;
+        boolean isValid = false;
+        while (!isValid) {
             String choice = inputString(msg);
+
             if (choice.equalsIgnoreCase(YES_CHOICE)) {
-                return true;
+                result = true;
+                isValid = true;
             }
 
             if (choice.equalsIgnoreCase((NO_CHOICE))) {
-                return false;
+                result = false;
+                isValid = true;
             }
             System.err.println(formatMsg);
-            System.out.println(msg);
         }
+        return result;
     }
 
     /**
      * This method helps the system get Update/Delete choice from the user
      *
-     * @param msg the prompt message require input
+     * @param msg       the prompt message require input
      * @param formatMsg the prompt message will be displayed if input user not valid
      * @return true if user enter U/u, otherwise false if input is D/d
      */
@@ -131,8 +136,6 @@ public class DataHelper {
 
         return course;
     }
-
-
 
 
 }

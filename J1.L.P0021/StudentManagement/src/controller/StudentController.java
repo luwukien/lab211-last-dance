@@ -29,7 +29,7 @@ public class StudentController {
      * @return creat at least 10 valid student
      */
     public ArrayList<Student> createStudent(ArrayList<Student> listStudent, Display display) {
-        while(true) {
+        while (true) {
             display.displayCreateHeader(FIRST_INDEX_STUDENT);
             String id = dataHelper.inputString("Enter id:");
 
@@ -68,7 +68,7 @@ public class StudentController {
     }
 
     /**
-     *  sort student by name ascending
+     * sort student by name ascending
      *
      * @param listStudent a list valid student
      */
@@ -78,10 +78,10 @@ public class StudentController {
     }
 
     /**
-     *  The logic find student by name
+     * The logic find student by name
      *
      * @param listStudent a list valid student
-     * @param name the name student who user want to find
+     * @param name        the name student who user want to find
      * @return a list student name contain name student who user want to find
      */
     public ArrayList<Student> findStudentByName(ArrayList<Student> listStudent, String name) {
@@ -101,7 +101,7 @@ public class StudentController {
     }
 
     /**
-     *  The UI which user interact
+     * The UI which user interact
      *
      * @param listStudent a list valid student
      * @return a list sorted student and some information related to
@@ -111,7 +111,7 @@ public class StudentController {
 
         if (listStudent == null || listStudent.isEmpty()) {
             System.err.println("List student is empty. Cannot find!!!");
-        } else  {
+        } else {
             String name = dataHelper.inputString("Enter the name student who you want to find: ");
             result = findStudentByName(listStudent, name.toLowerCase());
 
@@ -124,11 +124,11 @@ public class StudentController {
     }
 
     /**
+     * This method helps find student by id
      *
-     *
-     * @param listStudent
-     * @param studentId
-     * @return
+     * @param listStudent a list valid student
+     * @param studentId   the student id who user want to find
+     * @return Student if id is found, otherwise return null
      */
     public Student findStudentById(ArrayList<Student> listStudent, String studentId) {
         Student foundStudent = null;
@@ -144,11 +144,11 @@ public class StudentController {
     }
 
     /**
-     *  This method helps find student by id
+     * This method helps find a list student by id
      *
      * @param listStudent a list valid student
-     * @param studentId the student id who user want to find
-     * @return Student if id is found, otherwise return null
+     * @param studentId   the student id who user want to find
+     * @return List Student if id is found, otherwise return empty array
      */
     public ArrayList<Student> findListStudentById(ArrayList<Student> listStudent, String studentId) {
         ArrayList<Student> foundStudent = new ArrayList<>();
@@ -163,7 +163,7 @@ public class StudentController {
     }
 
     /**
-     *  This method helps update the information of student: name, semester, course
+     * This method helps update the information of student: name, semester, course
      *
      * @param student
      * @return Student with new information updated
@@ -174,7 +174,7 @@ public class StudentController {
         student.setStudentName(name);
         String semester = dataHelper.inputString("New Semester: ");
         student.setSemester(semester);
-        CourseType courseName =  dataHelper.inputCourseName("New Course: ");
+        CourseType courseName = dataHelper.inputCourseName("New Course: ");
         student.setCourseName(courseName);
         System.out.println("Update successfully the student!!!");
         return student;
@@ -229,16 +229,18 @@ public class StudentController {
                 result = updateStudent(studentToProcess);
             } else {
                 display.displayDeleteHeader();
-                result =  deleteStudent(listStudent, studentToProcess);
+                result = deleteStudent(listStudent, studentToProcess);
             }
         }
         return result;
     }
 
     /**
+     * This method count amount of courses of a student
      *
-     * @param listStudent
-     * @return
+     * @param listStudent a list valid student
+     * @return HashMap contains elements: Key and Value. Key: NameStudent|CourseName;
+     * Value: total of courses of this student
      */
     public HashMap<String, Integer> generateReport(ArrayList<Student> listStudent) {
         HashMap<String, Integer> reportMap = null;

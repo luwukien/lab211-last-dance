@@ -13,13 +13,15 @@ import java.util.ArrayList;
 public class Validation {
 
     /**
+     * Checks if a student record already exists in the list.
+     * Uniqueness is defined by the combination of ID, name, semester, course type.
      *
-     * @param listStudent
-     * @param id
-     * @param name
-     * @param courseType
-     * @param semester
-     * @return
+     * @param listStudent The list of existing students to check again.
+     * @param id          the student id
+     * @param name        the student name (case-insensitive)
+     * @param courseType  the semester (case-insensitive)
+     * @param semester    the type of course (Java, .Net, C/C++)
+     * @return true if a duplicate is found, false otherwise
      */
     public boolean isDuplicate(ArrayList<Student> listStudent, String id, String name,
                                String semester, CourseType courseType) {
@@ -33,7 +35,6 @@ public class Validation {
 
         return false;
     }
-
 
 
 }

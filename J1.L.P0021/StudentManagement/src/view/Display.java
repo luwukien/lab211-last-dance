@@ -24,13 +24,14 @@ public class Display {
         System.out.println(" 4.	Report");
         System.out.println(" 5.	Exit");
 
-        int choice = validation.checkInputLimitChoices("Enter your choice: ",1, 5);
+        int choice = validation.checkInputLimitChoices("Enter your choice: ", 1, 5);
         return choice;
     }
 
     /**
-     *
-     * @param student
+     * Helper method to format and print a single student's details in a row.
+     * Format: ID - Name - Semester - CourseName.
+     * * @param student The student object to display.
      */
     public void displayStudent(Student student) {
         String id = student.getId();
@@ -45,7 +46,7 @@ public class Display {
     }
 
     public void displayCreateHeader(int countStudent) {
-        System.out.println("============ Create New Student "+ countStudent + "============ ");
+        System.out.println("============ Create New Student " + countStudent + "============ ");
     }
 
     public void displayDeleteHeader() {
@@ -60,6 +61,12 @@ public class Display {
         System.out.println("============ Report Student ============\n");
     }
 
+    /**
+     * Sorts the student list by name using the StudentController and displays the result
+     *
+     * @param listStudent       the raw list of student
+     * @param studentController the controller responsible for sorting logic.
+     */
     public void displaySortedStudentByName(ArrayList<Student> listStudent, StudentController studentController) {
         System.out.println("============ The sorted list Student ============\n");
         displayHeader();
@@ -68,6 +75,10 @@ public class Display {
         }
     }
 
+    /**
+     * Displays all records from a specific filtered list (found list)
+     * @param foundList The list of students found from a search/filter operation.
+     */
     public void displayAllRecordsOfStudent(ArrayList<Student> foundList) {
         System.out.println("============ The found list Student ============\n");
         System.out.printf("%-5s%-20s%-10s\n", "No", "Name", "Course");
@@ -81,8 +92,12 @@ public class Display {
     }
 
     /**
+     * Generates and displays a report based on the provided statistics map
+     * Notes: The map keys must follow the format "StudentName|CourseName"
+     * to be parsed correctly
      *
-     * @param reportMap
+     * @param reportMap A HashMap containing the data where Key is "StudentName|CourseName"
+     *                  and Value is the total count of courses
      */
     public void displayReport(HashMap<String, Integer> reportMap) {
         if (reportMap == null) {

@@ -22,7 +22,6 @@ public enum CourseType {
     }
 
     /**
-     *
      * @param id
      * @return
      */
