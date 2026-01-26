@@ -1,60 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="60208db9-7761-484c-8ff0-62ab4f068850" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/Main.java" afterDir="false" />
+    <list default="true" id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controller/CandidateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Candidate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/CandidateType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Experience.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Fresher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Intern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utility/DataHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utility/Validation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/controller/CandidateController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/model/Candidate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/ulitity/DataHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J1.L.P0021/CandidateManagement/src/ulitity/Validation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;luwukien&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "luwukien"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/luwukien/lab211-last-dance.git&quot;,
-    &quot;accountId&quot;: &quot;b282c4d3-5d4a-4bea-bb70-ec25a857996e&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/luwukien/lab211-last-dance.git",
+    "accountId": "b282c4d3-5d4a-4bea-bb70-ec25a857996e"
   }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="38nqmgbUu7Y4XP6MtCUinjfYHMZ" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="38nshIzs8Y5V1R7WRvNkdIexixh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StudyMaterials/Materials/3_Semester/LAB211/practice-code/J1.L.P0022/CandidateManagement/src&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/StudyMaterials/Materials/3_Semester/LAB211/practice-code/J1.L.P0022/CandidateManagement"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\StudyMaterials\Materials\3_Semester\LAB211\practice-code\J1.L.P0022\CandidateManagement\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="60208db9-7761-484c-8ff0-62ab4f068850" name="Changes" comment="" />
-      <created>1769445843242</created>
+      <changelist id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="" />
+      <created>1769446786277</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1769445843242</updated>
+      <updated>1769446786277</updated>
     </task>
     <servers />
   </component>
