@@ -1,8 +1,10 @@
 package utility;
 
+import model.Candidate;
 import model.CandidateType;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,6 +17,8 @@ public class DataHelper {
     private final String FORMAT_PHONE = "^[0-9]{10,}$";
     private final String YES_CHOICE = "Y";
     private final String NO_CHOICE = "N";
+    private final Validation validation = new Validation();
+
 
     /**
      * This method helps validate choice when user enter the number of menu choice
@@ -58,7 +62,7 @@ public class DataHelper {
         String result = "";
 
         while (!isValid) {
-            System.out.println(msg);
+            System.out.print(msg);
             String inputStr = sc.nextLine().trim();
             if (inputStr.isEmpty()) {
                 System.err.println("String must be enter at least 1 character");
@@ -226,5 +230,18 @@ public class DataHelper {
         return CandidateType.getCandidateById(choice);
     }
 
+    public String inputUniqueId(ArrayList<Candidate> listCandidate, String msg, String formatMsg) {
+        String result = null;
+        while (true) {
+            String idInput = inputString(msg);
+
+            if (!validation.checkExistId(listCandidate, idInput)) {
+                result = idInput;
+                break;
+            }
+            System.out.print(formatMsg);
+        }
+        return result;
+    }
 
 }

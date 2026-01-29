@@ -16,7 +16,7 @@ public class Validation {
      * @param idCandidate
      * @return
      */
-    public boolean checkIdCandidate(ArrayList<Candidate> listCandidate, String idCandidate) {
+    public boolean checkExistId(ArrayList<Candidate> listCandidate, String idCandidate) {
         boolean isExist = false;
         for (Candidate candidate : listCandidate) {
             if (candidate.getId().equalsIgnoreCase(idCandidate)) {

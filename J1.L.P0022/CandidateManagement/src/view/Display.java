@@ -25,4 +25,11 @@ public class Display {
         System.out.println("============ Create New Candidate ============ ");
     }
 
+    public void displayAllTypeCandidate() {
+        System.out.println("----------------------------------------------");
+        System.out.println("1.\tExperience\n" +
+                "2.\tFresher\n" +
+                "3.\tInternship\n");
+    }
+
 }

@@ -17,11 +17,11 @@ public class Display {
     private final DataHelper validation = new DataHelper();
 
     public int displayMenu() {
-        System.out.println("============== Student Management Program ==============");
-        System.out.println(" 1.	Create");
-        System.out.println(" 2.	Find and Sort");
-        System.out.println(" 3.	Update/Delete");
-        System.out.println(" 4.	Report");
+        System.out.println("============== Student Management System ==============");
+        System.out.println(" 1.	Create Intern");
+        System.out.println(" 2.	Create Fresher");
+        System.out.println(" 3.	Create Experience");
+        System.out.println(" 4.	Search Candidate");
         System.out.println(" 5.	Exit");
 
         int choice = validation.checkInputLimitChoices("Enter your choice: ", 1, 5);
