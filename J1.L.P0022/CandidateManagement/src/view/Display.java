@@ -11,10 +11,9 @@ public class Display {
 
     public int displayMenu() {
         System.out.println("============== Candidate Management Program ==============");
-        System.out.println(" 1.	Create");
-        System.out.println(" 2.	Find and Sort");
-        System.out.println(" 3.	Update/Delete");
-        System.out.println(" 4.	Report");
+        System.out.println("1.\tExperience\n" +
+                "2.\tFresher\n" +
+                "3.\tInternship\n");
         System.out.println(" 5.	Exit");
 
         int choice = validation.checkInputLimitChoices("Enter your choice: ", 1, 5);
@@ -32,4 +31,11 @@ public class Display {
                 "3.\tInternship\n");
     }
 
+    public void displayAllTypeGraduation() {
+        System.out.println("----------------------------------------------");
+        System.out.println("1.\tPoor\n" +
+                "2.\tFair\n" +
+                "3.\tGood\n" +
+                "4.\tExcellence\n");
+    }
 }

@@ -2,6 +2,8 @@ package utility;
 
 import model.Candidate;
 import model.CandidateType;
+import model.GraduationType;
+import view.Display;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -230,6 +232,13 @@ public class DataHelper {
         return CandidateType.getCandidateById(choice);
     }
 
+    /**
+     *
+     * @param listCandidate
+     * @param msg
+     * @param formatMsg
+     * @return
+     */
     public String inputUniqueId(ArrayList<Candidate> listCandidate, String msg, String formatMsg) {
         String result = null;
         while (true) {
@@ -244,4 +253,16 @@ public class DataHelper {
         return result;
     }
 
+    /**
+     *
+     * @param msg
+     * @param display
+     * @return
+     */
+    public String inputGraduationRank(String msg, Display display) {
+        String result = null;
+        display.displayAllTypeGraduation();
+        int type = checkInputLimitChoices(msg, 1, 4);
+        return result = GraduationType.getGraduationById(type).getTypeGraduation();
+    }
 }
