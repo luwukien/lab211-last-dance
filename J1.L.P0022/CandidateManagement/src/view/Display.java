@@ -34,15 +34,6 @@ public class Display {
         System.out.println("============ Create New Candidate ============ ");
     }
 
-    public void displayAllTypeGraduation() {
-        System.out.println("----------------------------------------------");
-        System.out.println("1.\tPoor\n" +
-                "2.\tFair\n" +
-                "3.\tGood\n" +
-                "4.\tExcellence\n");
-    }
-
-
     public void manageCreation(int type) {
         while (true) {
             displayHeaderCreate();
