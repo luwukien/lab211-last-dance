@@ -15,12 +15,12 @@ import java.util.Scanner;
  */
 public class DataHelper {
     private final Scanner sc = new Scanner(System.in);
-    private final String FORMAT_EMAIL = "^[A-Za-z0-9]+@[A-Za-z0-9.-]+\\[A-Za-z]+$";
+    private final String FORMAT_EMAIL = "^([A-Za-z0-9])+@([A-Za-z0-9.-])+\\.([A-Za-z])+$";
     private final String FORMAT_PHONE = "^[0-9]{10,}$";
     private final String YES_CHOICE = "Y";
     private final String NO_CHOICE = "N";
+    private final int MINIMUM_YEAR_BIRTH = 1990;
     private final Validation validation = new Validation();
-
 
     /**
      * This method helps validate choice when user enter the number of menu choice
@@ -60,21 +60,15 @@ public class DataHelper {
      * @return a string if it is valid
      */
     public String inputString(String msg) {
-        boolean isValid = false;
-        String result = "";
-
-        while (!isValid) {
+        while (true) {
             System.out.print(msg);
             String inputStr = sc.nextLine().trim();
             if (inputStr.isEmpty()) {
-                System.err.println("String must be enter at least 1 character");
-                System.out.print("Enter again: ");
-            } else {
-                result = inputStr;
-                isValid = true;
+                System.err.println("String must be enter at least 1 character!!!");
+                continue;
             }
+            return inputStr;
         }
-        return result;
     }
 
     /**
@@ -112,17 +106,14 @@ public class DataHelper {
      * @return a valid email
      */
     public String inputEmail(String msg, String formatMsg) {
-        String result = "";
-        boolean isValid = false;
-        while(!isValid) {
+        while(true) {
             String email = inputString(msg);
-            if (email.matches(FORMAT_EMAIL)) {
-                result = email;
-                isValid = true;
+            if (!email.matches(FORMAT_EMAIL)) {
+                System.out.println(formatMsg);
+                continue;
             }
-            System.out.println(formatMsg);
+            return email;
         }
-        return  result;
     }
 
     /**
@@ -134,18 +125,14 @@ public class DataHelper {
      * @return a valid phone
      */
     public String inputPhone(String msg, String formatMsg) {
-        String result = "";
-        boolean isValid = false;
-
-        while (!isValid) {
+        while (true) {
             String phone = inputString(msg);
-            if (phone.matches(FORMAT_PHONE)) {
-                result = phone;
-                isValid = true;
+            if (!phone.matches(FORMAT_PHONE)) {
+                System.out.println(formatMsg);
+                continue;
             }
-            System.out.println(formatMsg);
+            return phone;
         }
-        return result;
     }
 
     /**
@@ -157,18 +144,17 @@ public class DataHelper {
      */
     public boolean getYesNoChoice(String msg, String formatMsg) {
         boolean result = false;
-        boolean isValid = false;
-        while (!isValid) {
+        while (true) {
             String choice = inputString(msg);
 
             if (choice.equalsIgnoreCase(YES_CHOICE)) {
                 result = true;
-                isValid = true;
+                break;
             }
 
             if (choice.equalsIgnoreCase((NO_CHOICE))) {
                 result = false;
-                isValid = true;
+                break;
             }
             System.err.println(formatMsg);
         }
@@ -184,16 +170,16 @@ public class DataHelper {
     public int inputBirthDate(String msg, String formatMsg) {
         int result = 0;
 
-        boolean isValid = false;
-        while (!isValid) {
+        while (true) {
             int birthDate = inputInt(msg);
-            if (birthDate > 1900 && birthDate < LocalDate.now().getYear()) {
-                result = birthDate;
-                isValid = true;
+            int currentYear = LocalDate.now().getYear();
+
+            if (birthDate < MINIMUM_YEAR_BIRTH || birthDate > currentYear) {
+                System.out.println(formatMsg);
+                continue;
             }
-            System.out.println(formatMsg);
+            return result;
         }
-        return result;
     }
 
     /**
@@ -203,18 +189,14 @@ public class DataHelper {
      * @return
      */
     public int inputExperience(String msg, String formatMsg) {
-        int result = 0;
-
-        boolean isValid = false;
-        while (!isValid) {
+        while (true) {
             int experience = inputInt(msg);
-            if (experience > 0 && experience < 100) {
-                result = experience;
-                isValid = true;
+            if (experience <= 0 || experience >= 100) {
+                System.out.println(formatMsg);
+                continue;
             }
-            System.out.println(formatMsg);
+            return experience;
         }
-        return result;
     }
 
     /**
@@ -256,13 +238,17 @@ public class DataHelper {
     /**
      *
      * @param msg
-     * @param display
      * @return
      */
-    public String inputGraduationRank(String msg, Display display) {
-        String result = null;
-        display.displayAllTypeGraduation();
+    public String inputGraduationRank(String msg) {
+        System.out.println("----------------------------------------------");
+        System.out.println("1.\tPoor\n" +
+                "2.\tFair\n" +
+                "3.\tGood\n" +
+                "4.\tExcellence\n");
+
         int type = checkInputLimitChoices(msg, 1, 4);
-        return result = GraduationType.getGraduationById(type).getTypeGraduation();
+        return GraduationType.getGraduationById(type).getTypeGraduation();
     }
+
 }

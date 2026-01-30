@@ -14,12 +14,21 @@ import java.util.ArrayList;
 public class CandidateController {
     private final DataHelper dataHelper = new DataHelper();
     private final Validation validation = new Validation();
-    private final int INTERNSHIP_CANDIDATE_ID = 3;
-    private final int FRESHER_CANDIDATE_ID = 2;
-    private final int EXPERIENCE_CANDIDATE_ID = 1;
+    public static final int INTERNSHIP_CANDIDATE_ID = 3;
+    public static final int FRESHER_CANDIDATE_ID = 2;
+    public static final int EXPERIENCE_CANDIDATE_ID = 1;
+    private ArrayList<Candidate> listCandidate;
 
-    public Candidate createCandidate(ArrayList<Candidate> listCandidate, Display display, int type) {
-        display.displayHeaderCreate();
+    public CandidateController(ArrayList<Candidate> listCandidate) {
+            this.listCandidate = listCandidate;
+    }
+
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public Candidate createCandidate(int type) {
         Candidate newCandidate = null;
 
         String idCandidate = dataHelper.inputUniqueId(listCandidate, "Enter id: ",
@@ -40,7 +49,7 @@ public class CandidateController {
                 newCandidate = createExperience(idCandidate, firstName, lastName, birthDate, address, phone, email);
                 break;
             case 2:
-                newCandidate = createFresher(idCandidate, firstName, lastName, birthDate, address, phone, email, display);
+                newCandidate = createFresher(idCandidate, firstName, lastName, birthDate, address, phone, email);
                 break;
             case 3:
                 newCandidate = createIntern(idCandidate, firstName, lastName, birthDate, address, phone, email);
@@ -76,9 +85,9 @@ public class CandidateController {
     }
 
     private Fresher createFresher(String id, String firstName, String lastName, int birthDate,
-                                  String address, String phone, String email, Display display) {
+                                  String address, String phone, String email) {
         String graduatedDate = dataHelper.inputString("Enter Graduation Date: ");
-        String graduatedRank = dataHelper.inputGraduationRank("Enter type of graduation: ", display);
+        String graduatedRank = dataHelper.inputGraduationRank("Enter type of graduation: ");
         String university = dataHelper.inputString("Enter University: ");
         return new Fresher(id, firstName, lastName, birthDate,
                 address, phone, email, CandidateType.getCandidateById(FRESHER_CANDIDATE_ID),
