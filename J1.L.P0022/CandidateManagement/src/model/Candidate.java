@@ -17,6 +17,17 @@ public abstract class Candidate {
     public Candidate() {
     }
 
+    /**
+     *
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param birthDate
+     * @param address
+     * @param phone
+     * @param email
+     * @param type
+     */
     public Candidate(String id, String firstName, String lastName, int birthDate,
                      String address, String phone, String email, CandidateType type) {
         this.id = id;

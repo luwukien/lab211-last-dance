@@ -28,6 +28,9 @@ public class Main {
                 case 3:
                     display.manageCreation(INTERNSHIP_CANDIDATE_ID);
                     break;
+                case 4:
+                    display.displayManageSearch();
+                    break;
                 case 5:
                     return;
             }

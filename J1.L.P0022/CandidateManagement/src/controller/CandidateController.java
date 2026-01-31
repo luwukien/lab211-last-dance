@@ -2,8 +2,6 @@ package controller;
 
 import model.*;
 import utility.DataHelper;
-import utility.Validation;
-import view.Display;
 
 import java.util.ArrayList;
 
@@ -13,28 +11,36 @@ import java.util.ArrayList;
  */
 public class CandidateController {
     private final DataHelper dataHelper = new DataHelper();
-    private final Validation validation = new Validation();
     public static final int INTERNSHIP_CANDIDATE_ID = 3;
     public static final int FRESHER_CANDIDATE_ID = 2;
     public static final int EXPERIENCE_CANDIDATE_ID = 1;
     private ArrayList<Candidate> listCandidate;
 
+    /**
+     *
+     * @param listCandidate
+     */
     public CandidateController(ArrayList<Candidate> listCandidate) {
             this.listCandidate = listCandidate;
     }
 
+    public ArrayList<Candidate> getListCandidate() {
+        return listCandidate;
+    }
+
     /**
+     * Create a type candidate, and add the list Candidate return Candidate type
      *
-     * @param type
-     * @return
+     * @param type the type of candidate(1-Intern; 2-Fresher; 3-Experience)
+     * @return if the system create successfully , it will return a new Candidate
      */
     public Candidate createCandidate(int type) {
         Candidate newCandidate = null;
 
         String idCandidate = dataHelper.inputUniqueId(listCandidate, "Enter id: ",
                 "The id existed. Try again!!!");
-        String firstName = dataHelper.inputString("Enter first name:");
-        String lastName = dataHelper.inputString("Enter last name:");
+        String firstName = dataHelper.inputString("Enter first name: ");
+        String lastName = dataHelper.inputString("Enter last name: ");
         int birthDate = dataHelper.inputBirthDate("Enter birth date: ",
                 "Birth date must be > 1900 and <= year now");
         String address = dataHelper.inputString("Enter address: ");
@@ -42,7 +48,6 @@ public class CandidateController {
                 "The phone number must be > 10 number. Try again!!! ");
         String email = dataHelper.inputEmail("Enter email format <account name>@<domain> (eg: annguyen@fpt.edu.vn): ",
                 "Wrong format. Try again!!!");
-
 
         switch (type) {
             case 1:
@@ -61,6 +66,7 @@ public class CandidateController {
         }
         return  newCandidate;
     }
+
 
     private Intern createIntern(String id, String firstName, String lastName, int birthDate,
                                 String address, String phone, String email) {
@@ -92,6 +98,19 @@ public class CandidateController {
         return new Fresher(id, firstName, lastName, birthDate,
                 address, phone, email, CandidateType.getCandidateById(FRESHER_CANDIDATE_ID),
                 graduatedDate, graduatedRank, university) ;
+    }
+
+    public ArrayList<Candidate> findCandidateByName(String nameFound, int type) {
+        ArrayList<Candidate> foundCandidates = new ArrayList<>();
+        for (Candidate candidate : listCandidate) {
+            if (candidate.getType().getId() == type) {
+                if (candidate.getFirstName().contains(nameFound) ||
+                        candidate.getLastName().contains(nameFound)) {
+                    foundCandidates.add(candidate);
+                }
+            }
+        }
+        return foundCandidates;
     }
 
 }
