@@ -45,7 +45,7 @@ public class CandidateController {
                 "Birth date must be > 1900 and <= year now");
         String address = dataHelper.inputString("Enter address: ");
         String phone = dataHelper.inputPhone("Enter phone: ",
-                "The phone number must be > 10 number. Try again!!! ");
+                "The phone number must be > 10 number and must be a number. Try again!!! ");
         String email = dataHelper.inputEmail("Enter email format <account name>@<domain> (eg: annguyen@fpt.edu.vn): ",
                 "Wrong format. Try again!!!");
 

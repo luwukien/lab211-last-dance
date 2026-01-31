@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="remove an unnecessary method">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="still errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/CandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CandidateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Candidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/DataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/DataHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Display.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769763397872</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="still errors">
+      <option name="closed" value="true" />
+      <created>1769874148479</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769874148479</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +160,8 @@
     <MESSAGE value="feat: update create candidate in CandidateController.java" />
     <MESSAGE value="refactor code to format MVC" />
     <MESSAGE value="remove an unnecessary method" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove an unnecessary method" />
+    <MESSAGE value="still errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="still errors" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CandidateManagement$Main.ic" NAME="Main Coverage Results" MODIFIED="1769762645449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

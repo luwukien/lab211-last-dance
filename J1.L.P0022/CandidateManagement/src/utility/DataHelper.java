@@ -64,7 +64,7 @@ public class DataHelper {
             System.out.print(msg);
             String inputStr = sc.nextLine().trim();
             if (inputStr.isEmpty()) {
-                System.err.println("String must be enter at least 1 character!!!");
+                System.out.println("String must be enter at least 1 character!!!");
                 continue;
             }
             return inputStr;
@@ -82,7 +82,7 @@ public class DataHelper {
 
         while (true) {
             try {
-                System.out.println(msg);
+                System.out.print(msg);
                 int inputInteger = Integer.parseInt(sc.nextLine().trim());
                 if (inputInteger > 0) {
                     result = inputInteger;

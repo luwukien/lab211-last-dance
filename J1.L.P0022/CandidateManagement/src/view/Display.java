@@ -51,8 +51,8 @@ public class Display {
     }
 
     public void displayCandidate(Candidate candidate) {
-        String fullName = candidate.getFirstName() + candidate.getLastName();
-        System.out.printf("%-20s | %-4d | %-20s | %-12s | %-25s | %-3s", fullName, candidate.getBirthDate(),
+        String fullName = candidate.getFirstName() + " " + candidate.getLastName();
+        System.out.printf("%-20s | %-4d | %-20s | %-12s | %-25s | %-3s\n", fullName, candidate.getBirthDate(),
                 candidate.getAddress(), candidate.getPhone(), candidate.getEmail(), candidate.getType().getId());
     }
 
@@ -122,7 +122,11 @@ public class Display {
         displayAllCandidate(listCandidate);
 
         String foundName = dataHelper.inputString("Input Candidate name (First name or Last name): ");
-        int foundType = dataHelper.checkInputLimitChoices("Input type of candidate", 1, 3);
+
+        System.out.println("1. Experience");
+        System.out.println("2. Fresher");
+        System.out.println("3. Internship");
+        int foundType = dataHelper.checkInputLimitChoices("Input type of candidate: ", 1, 3);
 
         ArrayList<Candidate> foundCandidates = controller.findCandidateByName(foundName, foundType);
 
