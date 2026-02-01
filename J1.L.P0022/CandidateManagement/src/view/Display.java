@@ -4,6 +4,7 @@ import controller.CandidateController;
 import model.Candidate;
 import model.Experience;
 import model.Fresher;
+import model.Intern;
 import utility.DataHelper;
 
 import java.util.ArrayList;
@@ -16,11 +17,9 @@ public class Display {
     private final DataHelper dataHelper = new DataHelper();
     private final CandidateController controller;
 
-
     public Display(CandidateController controller) {
         this.controller = controller;
     }
-
 
     public int displayMenu() {
         System.out.println("============== Candidate Management Program ==============");
@@ -62,7 +61,7 @@ public class Display {
         ArrayList<Candidate> experienceList = new ArrayList<>();
 
         for (Candidate candidate : listCandidate) {
-            if (candidate instanceof Experience) {
+            if (candidate instanceof Intern) {
                 internList.add(candidate);
             } else if (candidate instanceof Fresher) {
                 fresherList.add(candidate);
@@ -74,26 +73,32 @@ public class Display {
         if (!internList.isEmpty()) {
             displayHeaderInternCandidate();
             for (Candidate candidate : internList) {
-                System.out.println(candidate.getFirstName() + candidate.getLastName());
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
             }
         }
 
         if (!fresherList.isEmpty()) {
             displayHeaderFresherCandidate();
             for (Candidate candidate : fresherList) {
-                System.out.println(candidate.getFirstName() + candidate.getLastName());
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
             }
         }
 
         if (!experienceList.isEmpty()) {
             displayHeaderExperienceCandidate();
             for (Candidate candidate : experienceList) {
-                System.out.println(candidate.getFirstName() + candidate.getLastName());
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
             }
         }
 
     }
 
+    /**
+     *  Display result of a method createCandidate in {@link CandidateController}. Then, get the choice from user Y/N to
+     *  continue creating a new candidate
+     *
+     * @param type the type of candidate(1-Intern; 2-Fresher; 3-Experience)
+     */
     public void manageCreation(int type) {
         while (true) {
             displayHeaderCreate();
@@ -123,11 +128,7 @@ public class Display {
 
         String foundName = dataHelper.inputString("Input Candidate name (First name or Last name): ");
 
-        System.out.println("1. Experience");
-        System.out.println("2. Fresher");
-        System.out.println("3. Internship");
-        int foundType = dataHelper.checkInputLimitChoices("Input type of candidate: ", 1, 3);
-
+        int foundType = dataHelper.inputCandidateType("Input type of candidate: ").getId();
         ArrayList<Candidate> foundCandidates = controller.findCandidateByName(foundName, foundType);
 
         if (foundCandidates.isEmpty()) {

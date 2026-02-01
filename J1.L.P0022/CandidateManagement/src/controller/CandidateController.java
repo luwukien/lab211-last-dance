@@ -16,10 +16,6 @@ public class CandidateController {
     public static final int EXPERIENCE_CANDIDATE_ID = 1;
     private ArrayList<Candidate> listCandidate;
 
-    /**
-     *
-     * @param listCandidate
-     */
     public CandidateController(ArrayList<Candidate> listCandidate) {
             this.listCandidate = listCandidate;
     }

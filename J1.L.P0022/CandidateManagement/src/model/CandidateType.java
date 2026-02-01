@@ -25,11 +25,6 @@ public enum CandidateType {
         return typeCandidate;
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     public static CandidateType getCandidateById(int id) {
         CandidateType result = null;
 

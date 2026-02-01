@@ -26,11 +26,6 @@ public enum GraduationType {
         return typeGraduation;
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     public static GraduationType getGraduationById(int id) {
         GraduationType result = null;
 

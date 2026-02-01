@@ -3,7 +3,6 @@ package utility;
 import model.Candidate;
 import model.CandidateType;
 import model.GraduationType;
-import view.Display;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +18,8 @@ public class DataHelper {
     private final String FORMAT_PHONE = "^[0-9]{10,}$";
     private final String YES_CHOICE = "Y";
     private final String NO_CHOICE = "N";
-    private final int MINIMUM_YEAR_BIRTH = 1990;
+    private final int MINIMUM_YEAR_BIRTH = 1900;
+    private final int MINIMUM_CHOICE = 1;
     private final Validation validation = new Validation();
 
     /**
@@ -53,12 +53,6 @@ public class DataHelper {
         return result;
     }
 
-    /**
-     * This method helps the string valid when users enter a string
-     *
-     * @param msg the prompt message require input
-     * @return a string if it is valid
-     */
     public String inputString(String msg) {
         while (true) {
             System.out.print(msg);
@@ -71,12 +65,6 @@ public class DataHelper {
         }
     }
 
-    /**
-     * This method helps validate input integer from user
-     *
-     * @param msg the prompt requires the user input
-     * @return a valid integer > 0.
-     */
     public int inputInt(String msg) {
         int result = 0;
 
@@ -97,14 +85,6 @@ public class DataHelper {
         return result;
     }
 
-    /**
-     * This method helps validate input email from user
-     *
-     * @param msg the prompt requires the user input
-     * @param formatMsg display an example valid email if the input from user not valid.
-     *                  Then the user must be entered again
-     * @return a valid email
-     */
     public String inputEmail(String msg, String formatMsg) {
         while(true) {
             String email = inputString(msg);
@@ -116,14 +96,6 @@ public class DataHelper {
         }
     }
 
-    /**
-     * This method helps validate input phone from user
-     *
-     * @param msg the prompt requires the user input
-     * @param formatMsg display an example valid phone if the input from user not valid.
-     *      *                  Then the user must be entered again
-     * @return a valid phone
-     */
     public String inputPhone(String msg, String formatMsg) {
         while (true) {
             String phone = inputString(msg);
@@ -161,33 +133,18 @@ public class DataHelper {
         return result;
     }
 
-    /**
-     *
-     * @param msg
-     * @param formatMsg
-     * @return
-     */
     public int inputBirthDate(String msg, String formatMsg) {
-        int result = 0;
-
         while (true) {
             int birthDate = inputInt(msg);
             int currentYear = LocalDate.now().getYear();
 
-            if (birthDate < MINIMUM_YEAR_BIRTH || birthDate > currentYear) {
-                System.out.println(formatMsg);
-                continue;
+            if (birthDate >= MINIMUM_YEAR_BIRTH && birthDate <= currentYear) {
+                return birthDate;
             }
-            return result;
+            System.out.println(formatMsg);
         }
     }
 
-    /**
-     *
-     * @param msg
-     * @param formatMsg
-     * @return
-     */
     public int inputExperience(String msg, String formatMsg) {
         while (true) {
             int experience = inputInt(msg);
@@ -199,55 +156,33 @@ public class DataHelper {
         }
     }
 
-    /**
-     * Display a list candidate to choose by user
-     *
-     * @param msg the prompt requires the user input
-     * @param formatMsg display the prompt require the user enter again if input is wrong
-     * @return CourseType Experience, Fresher, Internship
-     */
-    public CandidateType inputCandidateType(String msg, String formatMsg) {
-        System.out.println("1.\tExperience\n" +
-                "2.\tFresher\n" +
-                "3.\tInternship\n");
-        int choice = checkInputLimitChoices(msg, 1, 3);
-        return CandidateType.getCandidateById(choice);
+    public CandidateType inputCandidateType(String msg) {
+        System.out.println(msg);
+        for (CandidateType type : CandidateType.values()) {
+            System.out.println(type.getId() + ". " + type.getTypeCandidate());
+        }
+
+        int type = checkInputLimitChoices(msg, MINIMUM_CHOICE, CandidateType.values().length);
+        return CandidateType.getCandidateById(type);
     }
 
-    /**
-     *
-     * @param listCandidate
-     * @param msg
-     * @param formatMsg
-     * @return
-     */
     public String inputUniqueId(ArrayList<Candidate> listCandidate, String msg, String formatMsg) {
-        String result = null;
         while (true) {
             String idInput = inputString(msg);
 
             if (!validation.checkExistId(listCandidate, idInput)) {
-                result = idInput;
-                break;
+                return idInput;
             }
             System.out.print(formatMsg);
         }
-        return result;
     }
 
-    /**
-     *
-     * @param msg
-     * @return
-     */
     public String inputGraduationRank(String msg) {
         System.out.println("----------------------------------------------");
-        System.out.println("1.\tPoor\n" +
-                "2.\tFair\n" +
-                "3.\tGood\n" +
-                "4.\tExcellence\n");
-
-        int type = checkInputLimitChoices(msg, 1, 4);
+        for (GraduationType type : GraduationType.values()) {
+            System.out.println(type.getId() + ". " + type.getTypeGraduation());
+        }
+        int type = checkInputLimitChoices(msg, MINIMUM_CHOICE, GraduationType.values().length);
         return GraduationType.getGraduationById(type).getTypeGraduation();
     }
 

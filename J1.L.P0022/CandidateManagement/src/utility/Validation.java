@@ -10,20 +10,12 @@ import java.util.ArrayList;
  */
 public class Validation {
 
-    /**
-     *
-     * @param listCandidate
-     * @param idCandidate
-     * @return
-     */
     public boolean checkExistId(ArrayList<Candidate> listCandidate, String idCandidate) {
-        boolean isExist = false;
         for (Candidate candidate : listCandidate) {
             if (candidate.getId().equalsIgnoreCase(idCandidate)) {
-                isExist = true;
-                break;
+                return true;
             }
         }
-        return isExist;
+        return false;
     }
 }
