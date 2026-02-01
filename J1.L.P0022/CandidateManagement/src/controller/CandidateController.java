@@ -100,12 +100,20 @@ public class CandidateController {
                 graduatedDate, graduatedRank, university) ;
     }
 
+    /**
+     * Find Candidate by name
+     *
+     * @param nameFound the parameter name who the user want to find
+     * @param type the type of candidate(1-Intern; 2-Fresher; 3-Experience)
+     * @return a list Candidate found if the system found by name, otherwise return an empty list
+     */
     public ArrayList<Candidate> findCandidateByName(String nameFound, int type) {
+        nameFound = nameFound.toLowerCase();
         ArrayList<Candidate> foundCandidates = new ArrayList<>();
         for (Candidate candidate : listCandidate) {
             if (candidate.getType().getId() == type) {
-                if (candidate.getFirstName().contains(nameFound) ||
-                        candidate.getLastName().contains(nameFound)) {
+                if (candidate.getFirstName().toLowerCase().contains(nameFound) ||
+                        candidate.getLastName().toLowerCase().contains(nameFound)) {
                     foundCandidates.add(candidate);
                 }
             }
