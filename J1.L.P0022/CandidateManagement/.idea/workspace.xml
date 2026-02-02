@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="done">
+    <list default="true" id="c7bc40c5-0e4f-429e-81c6-a3e844f46484" name="Changes" comment="refactor code: done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CandidateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/CandidateType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/CandidateType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GraduationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraduationType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/DataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/DataHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Display.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769923653579</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactor code: done">
+      <option name="closed" value="true" />
+      <created>1769926330294</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769926330294</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,7 +183,8 @@
     <MESSAGE value="remove an unnecessary method" />
     <MESSAGE value="still errors" />
     <MESSAGE value="done" />
-    <option name="LAST_COMMIT_MESSAGE" value="done" />
+    <MESSAGE value="refactor code: done" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor code: done" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CandidateManagement$Main.ic" NAME="Main Coverage Results" MODIFIED="1769762645449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
