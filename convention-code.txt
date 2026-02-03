@@ -1,0 +1,6 @@
+- mỗi hàm chỉ nên return một lần
+- không nên trả về giá trị -1, 0, 1 vì nó kh có ý nghĩa đối với chương trình nên trả về null
+- hạn chế sử dụng với public void 
+- tránh lúc nòa cũng sử dụng public static
+- hạn chế comment code, hãy viết clean code - một cách dễ hiểu dễ đọc
+- chia bài toán OOP theo mô hình MVC( model, utilities, controller, view)
