@@ -15,11 +15,6 @@ import java.util.ArrayList;
  */
 public class Display {
     private final DataHelper dataHelper = new DataHelper();
-    private final CandidateController controller;
-
-    public Display(CandidateController controller) {
-        this.controller = controller;
-    }
 
     public int displayMenu() {
         System.out.println("============== Candidate Management Program ==============");
@@ -92,56 +87,4 @@ public class Display {
         }
 
     }
-
-    /**
-     *  Display result of a method createCandidate in {@link CandidateController}. Then, get the choice from user Y/N to
-     *  continue creating a new candidate
-     *
-     * @param type the type of candidate(1-Intern; 2-Fresher; 3-Experience)
-     */
-    public void manageCreation(int type) {
-        while (true) {
-            displayHeaderCreate();
-            Candidate result = controller.createCandidate(type);
-
-            if (result != null) {
-                System.out.println("Create success candidate: " + result.getFirstName());
-            } else  {
-                System.out.println("Create failed!");
-            }
-
-            if (!dataHelper.getYesNoChoice("Do you want to continue(Y/N): ",
-                    "Try again. You can only enter Y/N")) {
-                break;
-            }
-        }
-    }
-
-    public void displayManageSearch() {
-        ArrayList<Candidate> listCandidate = controller.getListCandidate();
-
-        if (listCandidate.isEmpty()) {
-            System.out.println("No any candidate to display!!!");
-            return;
-        }
-        displayAllCandidate(listCandidate);
-
-        String foundName = dataHelper.inputString("Input Candidate name (First name or Last name): ");
-
-        int foundType = dataHelper.inputCandidateType("Input type of candidate: ").getId();
-        ArrayList<Candidate> foundCandidates = controller.findCandidateByName(foundName, foundType);
-
-        if (foundCandidates.isEmpty()) {
-            System.out.println("Not found any candidate name: " + foundName);
-            return;
-        }
-
-        System.out.println("The candidates found:");
-        for (Candidate foundCandidate : foundCandidates) {
-            displayCandidate(foundCandidate);
-        }
-
-    }
-
-
 }

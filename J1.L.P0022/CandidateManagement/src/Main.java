@@ -1,5 +1,6 @@
 import controller.CandidateController;
 import model.Candidate;
+import model.CandidateService;
 import view.Display;
 
 import java.util.ArrayList;
@@ -13,28 +14,10 @@ import static controller.CandidateController.*;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Candidate> listCandidate = new ArrayList<>();
-        CandidateController controller = new CandidateController(listCandidate);
-        Display display = new Display(controller);
+        CandidateService candidateService = new CandidateService(listCandidate);
+        CandidateController controller = new CandidateController(listCandidate, candidateService);
+        controller.run();
 
-        while (true) {
-            int choice = display.displayMenu();
-            switch (choice) {
-                case 1:
-                    display.manageCreation(EXPERIENCE_CANDIDATE_ID);
-                    break;
-                case 2:
-                    display.manageCreation(FRESHER_CANDIDATE_ID);
-                    break;
-                case 3:
-                    display.manageCreation(INTERNSHIP_CANDIDATE_ID);
-                    break;
-                case 4:
-                    display.displayManageSearch();
-                    break;
-                case 5:
-                    return;
-            }
-        }
 
     }
 }

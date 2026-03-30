@@ -65,12 +65,11 @@ public class Display {
      * Sorts the student list by name using the StudentController and displays the result
      *
      * @param listStudent       the raw list of student
-     * @param studentController the controller responsible for sorting logic.
      */
-    public void displaySortedStudentByName(ArrayList<Student> listStudent, StudentController studentController) {
+    public void displaySortedStudentByName(ArrayList<Student> listStudent) {
         System.out.println("============ The sorted list Student ============\n");
         displayHeader();
-        for (Student student : studentController.sortStudentByName(listStudent)) {
+        for (Student student : listStudent) {
             displayStudent(student);
         }
     }

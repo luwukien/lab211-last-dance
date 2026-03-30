@@ -1,6 +1,7 @@
 package utility;
 
 import model.Candidate;
+import model.CandidateService;
 import model.CandidateType;
 import model.GraduationType;
 
@@ -20,7 +21,6 @@ public class DataHelper {
     private final String NO_CHOICE = "N";
     private final int MINIMUM_YEAR_BIRTH = 1900;
     private final int MINIMUM_CHOICE = 1;
-    private final Validation validation = new Validation();
 
     /**
      * This method helps validate choice when user enter the number of menu choice
@@ -166,11 +166,11 @@ public class DataHelper {
         return CandidateType.getCandidateById(type);
     }
 
-    public String inputUniqueId(ArrayList<Candidate> listCandidate, String msg, String formatMsg) {
+    public String inputUniqueId(CandidateService candidateService, String msg, String formatMsg) {
         while (true) {
             String idInput = inputString(msg);
 
-            if (!validation.checkExistId(listCandidate, idInput)) {
+            if (candidateService.checkExistId(idInput)) {
                 return idInput;
             }
             System.out.print(formatMsg);

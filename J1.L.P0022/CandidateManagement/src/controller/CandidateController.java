@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import utility.DataHelper;
+import view.Display;
 
 import java.util.ArrayList;
 
@@ -10,18 +11,43 @@ import java.util.ArrayList;
  * Initialize Date: 27/01/2026
  */
 public class CandidateController {
+    private final ArrayList<Candidate> listCandidate;
     private final DataHelper dataHelper = new DataHelper();
+    private final CandidateService candidateService;
+    private final Display display = new Display();
     public static final int INTERNSHIP_CANDIDATE_ID = 3;
     public static final int FRESHER_CANDIDATE_ID = 2;
     public static final int EXPERIENCE_CANDIDATE_ID = 1;
-    private ArrayList<Candidate> listCandidate;
 
-    public CandidateController(ArrayList<Candidate> listCandidate) {
+    public CandidateController(ArrayList<Candidate> listCandidate, CandidateService candidateService) {
             this.listCandidate = listCandidate;
+        this.candidateService = candidateService;
     }
 
     public ArrayList<Candidate> getListCandidate() {
         return listCandidate;
+    }
+
+    public void run() {
+        while (true) {
+            int choice = display.displayMenu();
+            switch (choice) {
+                case 1:
+                    manageCreation(EXPERIENCE_CANDIDATE_ID);
+                    break;
+                case 2:
+                    manageCreation(FRESHER_CANDIDATE_ID);
+                    break;
+                case 3:
+                    manageCreation(INTERNSHIP_CANDIDATE_ID);
+                    break;
+                case 4:
+                    displayManageSearch();
+                    break;
+                case 5:
+                    return;
+            }
+        }
     }
 
     /**
@@ -33,7 +59,7 @@ public class CandidateController {
     public Candidate createCandidate(int type) {
         Candidate newCandidate = null;
 
-        String idCandidate = dataHelper.inputUniqueId(listCandidate, "Enter id: ",
+        String idCandidate = dataHelper.inputUniqueId(candidateService,"Enter id: ",
                 "The id existed. Try again!!!");
         String firstName = dataHelper.inputString("Enter first name: ");
         String lastName = dataHelper.inputString("Enter last name: ");
@@ -58,9 +84,9 @@ public class CandidateController {
         }
 
         if (newCandidate != null) {
-            listCandidate.add(newCandidate);
+            candidateService.addCandidate(newCandidate);
         }
-        return  newCandidate;
+        return newCandidate;
     }
 
 
@@ -97,24 +123,51 @@ public class CandidateController {
     }
 
     /**
-     * Find Candidate by name
+     *  Display result of a method createCandidate in {@link CandidateController}. Then, get the choice from user Y/N to
+     *  continue creating a new candidate
      *
-     * @param nameFound the parameter name who the user want to find
      * @param type the type of candidate(1-Intern; 2-Fresher; 3-Experience)
-     * @return a list Candidate found if the system found by name, otherwise return an empty list
      */
-    public ArrayList<Candidate> findCandidateByName(String nameFound, int type) {
-        nameFound = nameFound.toLowerCase();
-        ArrayList<Candidate> foundCandidates = new ArrayList<>();
-        for (Candidate candidate : listCandidate) {
-            if (candidate.getType().getId() == type) {
-                if (candidate.getFirstName().toLowerCase().contains(nameFound) ||
-                        candidate.getLastName().toLowerCase().contains(nameFound)) {
-                    foundCandidates.add(candidate);
-                }
+    public void manageCreation(int type) {
+        while (true) {
+            display.displayHeaderCreate();
+            Candidate result = createCandidate(type);
+
+            if (result != null) {
+                System.out.println("Create success candidate: " + result.getFirstName());
+            } else  {
+                System.out.println("Create failed!");
+            }
+
+            if (!dataHelper.getYesNoChoice("Do you want to continue(Y/N): ",
+                    "Try again. You can only enter Y/N")) {
+                break;
             }
         }
-        return foundCandidates;
     }
 
+    public void displayManageSearch() {
+        ArrayList<Candidate> listCandidate = getListCandidate();
+
+        if (listCandidate.isEmpty()) {
+            System.out.println("No any candidate to display!!!");
+            return;
+        }
+        display.displayAllCandidate(listCandidate);
+
+        String foundName = dataHelper.inputString("Input Candidate name (First name or Last name): ");
+
+        int foundType = dataHelper.inputCandidateType("Input type of candidate: ").getId();
+        ArrayList<Candidate> foundCandidates = candidateService.findCandidateByName(foundName, foundType);
+
+        if (foundCandidates.isEmpty()) {
+            System.out.println("Not found any candidate name: " + foundName);
+            return;
+        }
+
+        System.out.println("The candidates found:");
+        for (Candidate foundCandidate : foundCandidates) {
+            display.displayCandidate(foundCandidate);
+        }
+    }
 }
