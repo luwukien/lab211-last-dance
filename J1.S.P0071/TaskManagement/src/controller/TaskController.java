@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import model.Task;
-import utilities.Validation;
+import model.TaskService;
+import utilities.DataHelper;
 import view.Display;
 
 /**
@@ -12,89 +13,72 @@ import view.Display;
  * @author IdeaPad
  */
 public class TaskController {
-    
-    private static final int STARTING_ID = 1;
-    private static final int ID_STEP = 1;
-    
-    private final Validation validation = new Validation();
+
+    private ArrayList<Task> allTask;
     private final Display display = new Display();
-    
+    private final DataHelper dataHelper = new DataHelper();
+    private final TaskService taskService;
+
+
+    public TaskController(ArrayList<Task> allTask) {
+        this.allTask = allTask;
+        this.taskService = new TaskService(allTask);
+    }
+
+    public void run() {
+        while (true) {
+            int choice = dataHelper.getChoiceMenu();
+            switch (choice) {
+                case 1:
+                    handleAddTask();
+                    break;
+                case 2:
+                    handleDeleteTask();
+                    break;
+                case 3:
+                    display.showTask(allTask);
+                    break;
+                case 4:
+                    return;
+            }
+        }
+    }
     
     /**
      * this methods help add to a task into list task
      * 
-     * @param allTask the list task in array task
-     * @return the id associated a task which just added.
      */
-    public int addTask(ArrayList<Task> allTask) {
-        int currentId;
-        if (allTask.isEmpty()) {
-            currentId = STARTING_ID;
-        } else {
-            currentId = allTask.get(allTask.size() - 1).getId() + ID_STEP;
-        }
-
+    public void handleAddTask() {
         System.out.println("--------------Add Task--------------");
+        int currentId = taskService.getIndexTaskID();
         System.out.print("Requirement Name: ");
-        String name = validation.inputString();
+        String name = dataHelper.inputString();
         System.out.print("Task Type: ");
-        String type = validation.inputTaskType();
+        String type = dataHelper.inputTaskType();
         System.out.print("Date: ");
-        Date date = validation.inputDate();
+        Date date = dataHelper.inputDate();
         System.out.print("From: ");
-        String fromTime = validation.inputPlanTime();
+        String fromTime = dataHelper.inputPlanTime();
         System.out.print("To: ");
-        String endTime = "";
-        while (true) {
-            endTime = validation.inputPlanTime();
-            
-            if (Double.parseDouble(endTime) >= Double.parseDouble(fromTime)) {
-                break;
-            }
-            System.out.print("Please input endTime > fromTime. Try again: ");
-        }
-        
+        String endTime = dataHelper.inputEndPlanTime(fromTime);
         System.out.print("Assignee: ");
-        String assignee = validation.inputString();
+        String assignee = dataHelper.inputString();
         System.out.print("Reviewer: ");
-        String reviewer = validation.inputString();
-
-        allTask.add(new Task(currentId, type, name, date, fromTime, endTime, assignee, reviewer));
+        String reviewer = dataHelper.inputString();
+        taskService.addTask(currentId, type, name, date, fromTime, endTime, assignee, reviewer);
         System.out.println("Added task successfull with the ID " + currentId);
-        
-        return currentId;
     }
 
-    /**
-     * this methods helps delete a task in list tasks
-     * 
-     * @param allTask the list task in array task
-     */
-    public void deleleTask(ArrayList<Task> allTask) {
-
+    public void handleDeleteTask() {
         System.out.println("-------------Delete Task--------------");
         System.out.print("ID: ");
-        int id = validation.inputInt();
+        int id = dataHelper.inputInt();
 
-        Iterator<Task> it = allTask.iterator();
-        while (it.hasNext()) {
-            Task task = it.next();
-            if (task.getId() == id) {
-                it.remove();
-                System.out.println("Deleted task id " + id + " successful!!!");
-                return;
-            }
+        boolean isDeleted = taskService.deleleTask(id);
+        if (isDeleted) {
+            System.out.println("Deleted task id " + id + " successful!!!");
+        } else {
+            System.out.println("Not exist any id in DB. Try again");
         }
-        System.out.println("Not exist any id in DB. Try again");
-
-    }
-
-    /**
-     * this method helps show all task which has the list task
-     * 
-     * @param allTask the list task in array task
-     */
-    public void showTask(ArrayList<Task> allTask) {
-        display.displayTask(allTask);
     }
 }

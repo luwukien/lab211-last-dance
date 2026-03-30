@@ -9,6 +9,11 @@ public class CandidateService {
         this.listCandidate = listCandidate;
     }
 
+    /**
+     *
+     * @param idCandidate
+     * @return
+     */
     public boolean checkExistId(String idCandidate) {
         boolean result = false;
         for (Candidate candidate : listCandidate) {
@@ -40,6 +45,10 @@ public class CandidateService {
         return foundCandidates;
     }
 
+    /**
+     *
+     * @param candidate
+     */
     public void addCandidate(Candidate candidate) {
         this.listCandidate.add(candidate);
     }

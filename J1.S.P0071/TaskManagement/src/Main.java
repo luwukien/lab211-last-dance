@@ -15,27 +15,9 @@ public class Main {
      */
     public static void main(String[] args) {
         ArrayList<Task> allTask = new ArrayList<>();
+        TaskController controller = new TaskController(allTask);
 
-        Display display = new Display();
-        TaskController controller = new TaskController();
-
-        while (true) {
-            int choice = display.displayMenu();
-            switch (choice) {
-                case 1:
-                    controller.addTask(allTask);
-                    break;
-                case 2:
-                    controller.deleleTask(allTask);
-                    break;
-                case 3:
-                    controller.showTask(allTask);
-                    break;
-                case 4:
-                    return;
-            }
-        }
-
+        controller.run();
     }
 
 }

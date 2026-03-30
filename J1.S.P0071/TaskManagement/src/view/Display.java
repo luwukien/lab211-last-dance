@@ -2,7 +2,8 @@ package view;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import utilities.Validation;
+
+import utilities.DataHelper;
 import model.Task;
 
 /**
@@ -11,18 +12,7 @@ import model.Task;
  */
 public class Display {
 
-    private final Validation validation = new Validation();
-
-    public int displayMenu() {
-        System.out.println("============== Task Program ==============");
-        System.out.println("1. Add Task");
-        System.out.println("2. Delete Task");
-        System.out.println("3. Display Task");
-        System.out.println("4. Exit");
-        System.out.print("Your choice: ");
-        int choice = validation.checkInputLimitChoices(1, 4);
-        return choice;
-    }
+    private final DataHelper dataHelper = new DataHelper();
 
     public void displayTask(ArrayList<Task> allTask) {
         if (allTask.isEmpty()) {
@@ -51,6 +41,14 @@ public class Display {
                     task.getReviewer()
             );
         }
+    }
 
+    /**
+     * this method helps show all task which has the list task
+     *
+     * @param allTask the list task in array task
+     */
+    public void showTask(ArrayList<Task> allTask) {
+        displayTask(allTask);
     }
 }

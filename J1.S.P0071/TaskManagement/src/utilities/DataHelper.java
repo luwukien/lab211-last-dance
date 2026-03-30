@@ -1,21 +1,32 @@
 package utilities;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Date;
 import model.Task;
 import model.TaskType;
 
-/**
- *
- * @author IdeaPad
- */
-public class Validation {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
+public class DataHelper {
     private final Scanner sc = new Scanner(System.in);
     private final String VALID_FORMAT = "([0-9]{1,2}\\.5|[0-9]{1,2}\\.0)$";
+
+    /**
+     *
+     * @return
+     */
+    public int getChoiceMenu() {
+        System.out.println("============== Task Program ==============");
+        System.out.println("1. Add Task");
+        System.out.println("2. Delete Task");
+        System.out.println("3. Display Task");
+        System.out.println("4. Exit");
+        System.out.print("Your choice: ");
+        int choice = checkInputLimitChoices(1, 4);
+        return choice;
+    }
 
     /**
      * This method helps validate choice when user enter the number of menu
@@ -83,10 +94,10 @@ public class Validation {
             try {
                 result = formatDate.parse(date);
                 Date now = new Date();
-                
+
                 String nowStr = formatDate.format(now);
                 Date todayZeroTime = formatDate.parse(nowStr);
-                
+
                 if (result.before(todayZeroTime)) {
                     System.out.println("Date must be in the future or today! Please try again");
                     continue;
@@ -119,6 +130,18 @@ public class Validation {
 
     }
 
+    public String inputEndPlanTime(String fromTime) {
+        String endTime = "";
+        while (true) {
+            endTime = inputPlanTime();
+
+            if (Double.parseDouble(endTime) >= Double.parseDouble(fromTime)) {
+                break;
+            }
+            System.out.print("Please input endTime > fromTime. Try again: ");
+        }
+        return endTime;
+    }
     public int inputInt() {
         int result = 0;
 
@@ -142,24 +165,5 @@ public class Validation {
         int choice = checkInputLimitChoices(1, 4);
         String result = TaskType.getById(choice).getName();
         return result;
-    }
-
-    /**
-     * This method helps check id task is exist in list
-     * 
-     * @param id id task 
-     * @param allTask the list task in array list task
-     * @return
-     */
-    public boolean checkExistIdTask(int id, ArrayList<Task> allTask) {
-        boolean isExsit = false;
-
-        for (Task task : allTask) {
-            if (task.getId() == id) {
-                isExsit = true;
-                break;
-            }
-        }
-        return isExsit;
     }
 }
