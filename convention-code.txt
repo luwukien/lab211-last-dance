@@ -1,6 +1,56 @@
-- mỗi hàm chỉ nên return một lần
-- không nên trả về giá trị -1, 0, 1 vì nó kh có ý nghĩa đối với chương trình nên trả về null
-- hạn chế sử dụng với public void 
-- tránh lúc nòa cũng sử dụng public static
-- hạn chế comment code, hãy viết clean code - một cách dễ hiểu dễ đọc
-- chia bài toán OOP theo mô hình MVC( model, utilities, controller, view)
+1. Quy định về Định dạng Code (Formatting)
+Dấu ngoặc: { nằm ở cuối dòng, } nằm ở dòng riêng biệt. Mọi khối lệnh (kể cả chỉ có 1 dòng) đều phải đặt trong cặp ngoặc {}.
+
+Độ dài dòng: Một dòng không quá 100 ký tự. Nếu dài hơn, phải ngắt dòng sau các toán tử logic (&&, ||), dấu phẩy hoặc trước các toán tử toán học.
+
+Khai báo: Mỗi dòng chỉ khai báo 1 biến. Khai báo mảng theo kiểu Type[] anArray.
+
+Khoảng trắng: * Có 1 dấu cách trước { và sau dấu ,.
+
+Có dấu cách trước và sau các toán tử (+, -, *, /, =, ==,...).
+
+Dòng trống: Sử dụng dòng trống để ngăn cách các phương thức (method), vùng khai báo biến và vùng xử lý logic.
+
+2. Quy tắc Đặt tên (Naming Convention)
+Biến: Tên biến phải có hậu tố tương ứng với kiểu dữ liệu:
+
+List/Collection kết thúc bằng List.
+
+Set kết thúc bằng Set.
+
+Map kết thúc bằng Map.
+
+Array kết thúc bằng Array.
+
+Hằng số: Phải viết hoa toàn bộ, cách nhau bằng dấu gạch dưới (_) và tập trung trong file Constants.java.
+
+Package: Viết chữ thường toàn bộ.
+
+Class: Bắt đầu bằng chữ Hoa, dùng danh từ. Tên class Exception phải kết thúc bằng Exception.
+
+Interface: Bắt đầu bằng chữ I.
+
+Method: Bắt đầu bằng chữ thường, sử dụng động từ mô tả đúng chức năng.
+
+3. Quy định về Comment (Ghi chú)
+Sử dụng Javadoc cho Class và Method nếu cần thiết.
+
+Comment phải ngắn gọn, rõ ràng.
+
+Mọi Method và khối xử lý logic phức tạp đều phải có comment giải thích mục đích.
+
+4. Tư duy thiết kế (Common Logic)
+Model: Không chứa code nhập/xuất (I/O) hay làm việc với giao diện. Chỉ chứa dữ liệu và logic kiểm tra dữ liệu nội bộ.
+
+View: Không chứa logic nghiệp vụ. Mọi dữ liệu nhập từ bàn phím phải được kiểm tra (validate) trước khi chuyển đi.
+
+Controller: Không dùng Scanner trực tiếp. Đây là nơi duy nhất chứa cấu trúc switch-case của menu để điều hướng tính năng.
+
+5. Các quy định khác (Best Practices)
+So sánh: Sử dụng .equals() để so sánh giá trị Object (như String), không dùng ==.
+
+Tối ưu: Khi cộng chuỗi trong vòng lặp hoặc cộng nhiều chuỗi, phải dùng StringBuilder, không dùng String +=.
+
+Rà soát: * Kiểm tra xem có biến nào khai báo mà không dùng hay không.
+
+Mọi đầu vào từ người dùng đã được validate đầy đủ chưa.
